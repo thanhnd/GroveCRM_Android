@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Quynh Lam Ryan</string>
+    <string name="action_sign_in">Đăng Nhập Bằng Số Điện Thoại</string>
+    <string name="action_skip">Bỏ Qua</string>
+</resources>
