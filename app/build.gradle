@@ -18,7 +18,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -38,6 +38,9 @@ android {
 }
 
 dependencies {
+
+    def multidex_version = "2.0.1"
+    implementation "androidx.multidex:multidex:$multidex_version"
 
     def lifecycle_version = "2.2.0"
     // - - ViewModel
@@ -63,8 +66,14 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation 'com.github.bumptech.glide:glide:4.10.0' //Glideglide
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation "com.google.firebase:firebase-core:18.0.0"
+    implementation "com.google.firebase:firebase-config:20.0.1"
+    implementation "com.google.firebase:firebase-crashlytics:17.3.0"
+    implementation 'com.google.firebase:firebase-perf:19.0.10'
+
+    implementation "com.google.firebase:firebase-messaging:21.0.0"
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.github.shadowalker77:wp7progressbar:1.0.5'
 
 

@@ -20,8 +20,9 @@ class MainAdapter() :
             notifyDataSetChanged()
         }
 
-    class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+    var onItemClick: ((Article) -> Unit)? = null
 
+    class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         @Suppress("DEPRECATION")
         fun bind(article: Article) {
             tvArticleTitle.text = article.title
@@ -54,6 +55,9 @@ class MainAdapter() :
         // contents of the view with that element
         articles?.get(position)?.also { article ->
             viewHolder.bind(article)
+            viewHolder.itemView.setOnClickListener {
+                onItemClick?.invoke(article)
+            }
         }
 
     }

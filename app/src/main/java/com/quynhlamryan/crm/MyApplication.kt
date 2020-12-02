@@ -1,4 +1,5 @@
 package com.quynhlamryan.crm
 
-class MyApplication {
-}
+import androidx.multidex.MultiDexApplication
+
+class MyApplication : MultiDexApplication() {}
