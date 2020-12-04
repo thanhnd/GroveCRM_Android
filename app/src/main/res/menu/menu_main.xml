@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ct="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="AppCompatResource">
+
+    <item
+        android:id="@+id/menu_review"
+        android:icon="@drawable/ic_flash_ad_review"
+        android:showAsAction="ifRoom"
+        android:title="@string/flash_ad_review"
+        ct:showAsAction="ifRoom" />
+
+</menu>
