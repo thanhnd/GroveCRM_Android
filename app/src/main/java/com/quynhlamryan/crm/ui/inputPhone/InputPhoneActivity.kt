@@ -7,8 +7,6 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
-import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.quynhlamryan.crm.R
@@ -28,15 +26,6 @@ class InputPhoneActivity : AppCompatActivity() {
 
         inputPhoneViewModel = ViewModelProvider(this)
             .get(InputPhoneViewModel::class.java)
-
-//        inputPhoneViewModel.ldOtp?.observe(this@InputPhoneActivity, Observer {
-//            val loginResult = it ?: return@Observer
-//
-//            val intent = Intent(this, OtpActivity::class.java)
-//            startActivity(intent)
-//
-//            finish()
-//        })
 
         edtPhone.afterTextChanged {
             btnNext.isEnabled = Patterns.PHONE.matcher(it).matches()
@@ -59,16 +48,6 @@ class InputPhoneActivity : AppCompatActivity() {
         btnNext.isEnabled = Patterns.PHONE.matcher(edtPhone.text.toString()).matches()
     }
 
-    private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome)
-        val displayName = model.displayName
-        Toast.makeText(
-            applicationContext,
-            "$welcome $displayName",
-            Toast.LENGTH_LONG
-        ).show()
-    }
-
     private fun getOtp(phoneNumber: String) {
         inputPhoneViewModel.getOtp(phoneNumber)?.observe(this, {
             val accountCode = it ?: return@observe
@@ -79,10 +58,6 @@ class InputPhoneActivity : AppCompatActivity() {
 
             finish()
         })
-    }
-
-    private fun showLoginFailed(@StringRes errorString: Int) {
-        Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
 }
 

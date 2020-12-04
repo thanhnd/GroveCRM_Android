@@ -10,14 +10,14 @@ import com.quynhlamryan.crm.R
 
 
 class PrefixEditText : AppCompatEditText {
-    val icon: Bitmap by lazy {
+    private val icon: Bitmap by lazy {
         BitmapFactory.decodeResource(
             context.resources,
             R.drawable.ic_vn_flag
         )
     }
-    var mOriginalLeftPadding = -1f
-    var extraTextPadding = 20f
+    private var mOriginalLeftPadding = -1f
+    private var extraTextPadding = 20f
 
     constructor(context: Context) : super(context) {}
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {}

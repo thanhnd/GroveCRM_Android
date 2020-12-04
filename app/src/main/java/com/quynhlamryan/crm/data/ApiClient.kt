@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 internal object ApiClient {
-    val retrofitClient: Retrofit.Builder by lazy {
+    private val retrofitClient: Retrofit.Builder by lazy {
 
         val levelType =
         if (BuildConfig.BUILD_TYPE.contentEquals("debug"))
