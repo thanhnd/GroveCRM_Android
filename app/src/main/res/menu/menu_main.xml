@@ -5,10 +5,10 @@
     tools:ignore="AppCompatResource">
 
     <item
-        android:id="@+id/menu_review"
-        android:icon="@drawable/ic_flash_ad_review"
+        android:id="@+id/menu_location"
+        android:icon="@drawable/ic_menu_location"
         android:showAsAction="ifRoom"
-        android:title="@string/flash_ad_review"
+        android:title=""
         ct:showAsAction="ifRoom" />
 
 </menu>

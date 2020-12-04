@@ -1,8 +1,6 @@
 package com.quynhlamryan.crm.data
 
-import com.quynhlamryan.crm.data.model.Account
-import com.quynhlamryan.crm.data.model.Article
-import com.quynhlamryan.crm.data.model.ResponseResult
+import com.quynhlamryan.crm.data.model.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -26,7 +24,7 @@ interface ApiInterface {
     fun getListPromotions(): Call<ResponseResult<Account>>
 
     @GET("api/CRMStores/getliststore/")
-    fun getListStores(): Call<ResponseResult<Account>>
+    fun getListStores(): Call<ResponseResult<List<Store>>>
 
     @GET("api/CRMConfig/getlistconfig/")
     fun getConfig(): Call<ResponseResult<Account>>

@@ -1,4 +1,4 @@
-package com.quynhlamryan.crm
+package com.quynhlamryan.crm.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,10 +7,10 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.data.model.Article
 import com.quynhlamryan.crm.ui.browser.BrowserActivity
 import com.quynhlamryan.crm.ui.mapstore.MapStoreActivity
-import com.quynhlamryan.crm.ui.main.MainAdapter
 import com.quynhlamryan.crm.utils.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 

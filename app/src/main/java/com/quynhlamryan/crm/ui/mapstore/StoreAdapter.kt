@@ -1,39 +1,35 @@
-package com.quynhlamryan.crm.ui.main
+package com.quynhlamryan.crm.ui.mapstore
 
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.quynhlamryan.crm.R
-import com.quynhlamryan.crm.data.model.Article
+import com.quynhlamryan.crm.data.model.Store
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.item_article.*
+import kotlinx.android.synthetic.main.item_store.*
 
-class MainAdapter() :
-    RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class StoreAdapter() :
+    RecyclerView.Adapter<StoreAdapter.ViewHolder>() {
 
-    internal var articles: List<Article>? = null
+    internal var stores: List<Store>? = null
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    var onItemClick: ((Article) -> Unit)? = null
+    var onItemClick: ((Store) -> Unit)? = null
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         @Suppress("DEPRECATION")
-        fun bind(article: Article) {
-            tvArticleTitle.text = article.title
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                tvArticleDescription.text = Html.fromHtml(article.content, Html.FROM_HTML_MODE_LEGACY)
-            } else {
-                tvArticleDescription.text = Html.fromHtml(article.content)
-            }
+        fun bind(store: Store) {
+            tvStoreName.text = store.storeName
+            tvStoreAddress.text = store.address
+
             Glide
                 .with(containerView.context)
-                .load(article.imageUrl)
+                .load(store.imageUrl)
                 .centerCrop()
                 .into(ivImage);
         }
@@ -43,7 +39,7 @@ class MainAdapter() :
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_article, viewGroup, false)
+            .inflate(R.layout.item_store, viewGroup, false)
 
         return ViewHolder(view)
     }
@@ -53,16 +49,16 @@ class MainAdapter() :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        articles?.get(position)?.also { article ->
-            viewHolder.bind(article)
+        stores?.get(position)?.also { store ->
+            viewHolder.bind(store)
             viewHolder.itemView.setOnClickListener {
-                onItemClick?.invoke(article)
+                onItemClick?.invoke(store)
             }
         }
 
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = articles?.size ?: 0
+    override fun getItemCount() = stores?.size ?: 0
 
 }

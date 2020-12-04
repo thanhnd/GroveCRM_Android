@@ -1,18 +1,18 @@
-package com.quynhlamryan.crm.ui.main
+package com.quynhlamryan.crm.ui.mapstore
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.quynhlamryan.crm.data.MainActivityRepository
-import com.quynhlamryan.crm.data.model.Article
+import com.quynhlamryan.crm.data.MapStoreActivityRepository
+import com.quynhlamryan.crm.data.model.Store
 
-class MainActivityViewModel : ViewModel() {
+class MapStoreActivityViewModel : ViewModel() {
 
-    var servicesLiveData: MutableLiveData<List<Article>>? = null
+    var ldStores: MutableLiveData<List<Store>>? = null
 
-    fun getArticles() : LiveData<List<Article>>? {
-        servicesLiveData = MainActivityRepository.getServicesApiCall()
-        return servicesLiveData
+    fun getStores() : LiveData<List<Store>>? {
+        ldStores = MapStoreActivityRepository.getListStores()
+        return ldStores
     }
 
 }

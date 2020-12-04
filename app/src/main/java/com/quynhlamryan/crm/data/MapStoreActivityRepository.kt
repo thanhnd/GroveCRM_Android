@@ -2,40 +2,36 @@ package com.quynhlamryan.crm.data
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.quynhlamryan.crm.data.model.Article
+import com.quynhlamryan.crm.data.model.Store
 import com.quynhlamryan.crm.data.model.ResponseResult
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-object MainActivityRepository {
-    val serviceSetterGetter = MutableLiveData<List<Article>>()
+object MapStoreActivityRepository {
+    val stores = MutableLiveData<List<Store>>()
 
-    fun getServicesApiCall(): MutableLiveData<List<Article>> {
+    fun getListStores(): MutableLiveData<List<Store>> {
 
-        val call = ApiClient.apiInterface.getListArticles()
+        val call = ApiClient.apiInterface.getListStores()
 
-        call.enqueue(object: Callback<ResponseResult<List<Article>>> {
-            override fun onFailure(call: Call<ResponseResult<List<Article>>>, t: Throwable) {
+        call.enqueue(object: Callback<ResponseResult<List<Store>>> {
+            override fun onFailure(call: Call<ResponseResult<List<Store>>>, t: Throwable) {
                 // TODO("Not yet implemented")
                 Log.v("DEBUG : ", t.message.toString())
             }
 
             override fun onResponse(
-                call: Call<ResponseResult<List<Article>>>,
-                response: Response<ResponseResult<List<Article>>>
+                call: Call<ResponseResult<List<Store>>>,
+                response: Response<ResponseResult<List<Store>>>
             ) {
                 // TODO("Not yet implemented")
                 Log.v("DEBUG : ", response.body().toString())
 
-                val data = response.body()
-
-                val articles = data?.resultObj
-
-                serviceSetterGetter.value = data?.resultObj
+                stores.value = response.body()?.resultObj
             }
         })
 
-        return serviceSetterGetter
+        return stores
     }
 }

@@ -1,4 +1,4 @@
-package com.quynhlamryan.crm.ui.main
+package com.quynhlamryan.crm.ui.mapstore
 
 import androidx.lifecycle.ViewModel
 

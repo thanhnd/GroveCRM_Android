@@ -9,9 +9,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 object MainActivityRepository {
-    val serviceSetterGetter = MutableLiveData<List<Article>>()
+    val ldArticles = MutableLiveData<List<Article>>()
 
-    fun getServicesApiCall(): MutableLiveData<List<Article>> {
+    fun getListArticles(): MutableLiveData<List<Article>> {
 
         val call = ApiClient.apiInterface.getListArticles()
 
@@ -27,15 +27,10 @@ object MainActivityRepository {
             ) {
                 // TODO("Not yet implemented")
                 Log.v("DEBUG : ", response.body().toString())
-
-                val data = response.body()
-
-                val articles = data?.resultObj
-
-                serviceSetterGetter.value = data?.resultObj
+                ldArticles.value = response.body()?.resultObj
             }
         })
 
-        return serviceSetterGetter
+        return ldArticles
     }
 }
