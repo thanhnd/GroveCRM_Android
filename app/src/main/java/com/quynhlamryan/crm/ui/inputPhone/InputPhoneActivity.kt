@@ -1,19 +1,17 @@
 package com.quynhlamryan.crm.ui.inputPhone
 
-import android.app.Activity
 import android.content.Intent
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.ui.OtpActivity
 import kotlinx.android.synthetic.main.activity_input_phone.*
@@ -26,6 +24,7 @@ class InputPhoneActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_input_phone)
+        title = getString(R.string.title_activity_input_phone)
 
         inputPhoneViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(InputPhoneViewModel::class.java)

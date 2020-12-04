@@ -3,4 +3,8 @@
     <string name="app_name">Quynh Lam Ryan</string>
     <string name="action_sign_in">Đăng Nhập Bằng Số Điện Thoại</string>
     <string name="action_skip">Bỏ Qua</string>
+    <string name="click_continue_to_receive_otp">Nhấn vào Tiếp Tục để xác minh số điện thoại của bạn. Chúng tôi sẽ gửi SMS để xác minh.</string>
+    <string name="title_activity_input_phone">Nhập Số Điện Thoại</string>
+    <string name="title_activity_opt">Nhập Mã Xác Nhận</string>
+
 </resources>
