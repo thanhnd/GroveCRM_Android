@@ -1,6 +1,9 @@
 package com.quynhlamryan.crm.data
 
-import com.quynhlamryan.crm.data.model.*
+import com.quynhlamryan.crm.data.model.Account
+import com.quynhlamryan.crm.data.model.Article
+import com.quynhlamryan.crm.data.model.ResponseResult
+import com.quynhlamryan.crm.data.model.Store
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -12,7 +15,7 @@ interface ApiInterface {
     fun getUserInfo(): Call<ResponseResult<Account>>
 
     @GET("api/Users/sendsmsactivecode/")
-    fun getOtp(@Query("phoneNumber") phoneNumber: String): Call<ResponseResult<Account>>
+    fun getOtp(@Query("phoneNumber") phoneNumber: String): Call<ResponseResult<String>>
 
     @GET("api/Users/checksmsactivecode/")
     fun verifyOtp(): Call<ResponseResult<Account>>

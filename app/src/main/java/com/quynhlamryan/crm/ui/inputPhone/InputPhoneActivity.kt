@@ -4,16 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
+import android.util.Patterns
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.ui.OtpActivity
+import com.quynhlamryan.crm.utils.AccountManager
 import kotlinx.android.synthetic.main.activity_input_phone.*
 
 class InputPhoneActivity : AppCompatActivity() {
@@ -26,42 +26,26 @@ class InputPhoneActivity : AppCompatActivity() {
         setContentView(R.layout.activity_input_phone)
         title = getString(R.string.title_activity_input_phone)
 
-        inputPhoneViewModel = ViewModelProvider(this, LoginViewModelFactory())
+        inputPhoneViewModel = ViewModelProvider(this)
             .get(InputPhoneViewModel::class.java)
 
-        inputPhoneViewModel.inputPhoneNumberFormState.observe(this@InputPhoneActivity, Observer {
-            val loginState = it ?: return@Observer
-
-            // disable login button unless both edtPhone / password is valid
-            btnNext.isEnabled = loginState.isDataValid
-        })
-
-        inputPhoneViewModel.loginResult.observe(this@InputPhoneActivity, Observer {
-            val loginResult = it ?: return@Observer
-
-            loading.visibility = View.GONE
-            if (loginResult.error != null) {
-                showLoginFailed(loginResult.error)
-            } else if (loginResult.success != null) {
-                updateUiWithUser(loginResult.success)
-
-                val intent = Intent(this, OtpActivity::class.java)
-                startActivity(intent)
-
-                finish()
-            }
-        })
+//        inputPhoneViewModel.ldOtp?.observe(this@InputPhoneActivity, Observer {
+//            val loginResult = it ?: return@Observer
+//
+//            val intent = Intent(this, OtpActivity::class.java)
+//            startActivity(intent)
+//
+//            finish()
+//        })
 
         edtPhone.afterTextChanged {
-            inputPhoneViewModel.loginDataChanged(
-                edtPhone.text.toString()
-            )
+            btnNext.isEnabled = Patterns.PHONE.matcher(it).matches()
         }
 
         edtPhone.setOnEditorActionListener { _, actionId, _ ->
             when (actionId) {
                 EditorInfo.IME_ACTION_DONE ->
-                    inputPhoneViewModel.inputPhone(
+                    getOtp(
                         edtPhone.text.toString()
                     )
             }
@@ -69,20 +53,32 @@ class InputPhoneActivity : AppCompatActivity() {
         }
 
         btnNext.setOnClickListener {
-            loading.visibility = View.VISIBLE
-            inputPhoneViewModel.inputPhone(edtPhone.text.toString())
+            getOtp(edtPhone.text.toString())
         }
+
+        btnNext.isEnabled = Patterns.PHONE.matcher(edtPhone.text.toString()).matches()
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
-        // TODO : initiate successful logged in experience
         Toast.makeText(
             applicationContext,
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    private fun getOtp(phoneNumber: String) {
+        inputPhoneViewModel.getOtp(phoneNumber)?.observe(this, {
+            val accountCode = it ?: return@observe
+            AccountManager.accountCode = accountCode
+
+            val intent = Intent(this, OtpActivity::class.java)
+            startActivity(intent)
+
+            finish()
+        })
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

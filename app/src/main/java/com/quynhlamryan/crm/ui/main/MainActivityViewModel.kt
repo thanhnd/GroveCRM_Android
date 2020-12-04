@@ -8,11 +8,10 @@ import com.quynhlamryan.crm.data.model.Article
 
 class MainActivityViewModel : ViewModel() {
 
-    var servicesLiveData: MutableLiveData<List<Article>>? = null
+    var lvArticles: MutableLiveData<List<Article>>? = null
 
     fun getArticles() : LiveData<List<Article>>? {
-        servicesLiveData = MainActivityRepository.getListArticles()
-        return servicesLiveData
+        lvArticles = MainActivityRepository.getListArticles()
+        return lvArticles
     }
-
 }
