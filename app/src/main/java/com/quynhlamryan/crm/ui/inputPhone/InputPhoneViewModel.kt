@@ -9,7 +9,7 @@ class InputPhoneViewModel : ViewModel() {
     var ldOtp: MutableLiveData<String>? = null
 
     fun getOtp(phoneNumber: String) : LiveData<String>? {
-        return InputPhoneRepository.getOtp(phoneNumber)
+        ldOtp = InputPhoneRepository.getOtp(phoneNumber)
         return ldOtp
     }
 

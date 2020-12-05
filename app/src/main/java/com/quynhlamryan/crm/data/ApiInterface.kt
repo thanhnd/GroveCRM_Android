@@ -18,7 +18,10 @@ interface ApiInterface {
     fun getOtp(@Query("phoneNumber") phoneNumber: String): Call<ResponseResult<String>>
 
     @GET("api/Users/checksmsactivecode/")
-    fun verifyOtp(): Call<ResponseResult<Account>>
+    fun verifyOtp(@Query("gui") gui: String,
+                  @Query("code") smsCode: String,
+                  @Query("phone") phone: String,
+                  @Query("userUID") userUID: String): Call<ResponseResult<String>>
 
     @GET("api/CRMNews/getlistnew/")
     fun getListArticles(): Call<ResponseResult<List<Article>>>

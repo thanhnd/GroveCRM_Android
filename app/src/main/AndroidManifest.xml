@@ -23,7 +23,7 @@
             android:name=".ui.mapstore.MapStoreActivity"
             android:theme="@style/Theme.QuynhLamRyan.NoActionBar" />
         <activity
-            android:name=".ui.OtpActivity"
+            android:name=".ui.otp.OtpActivity"
             android:label="@string/title_activity_opt"/>
 
         <activity android:name=".ui.main.MainActivity" />

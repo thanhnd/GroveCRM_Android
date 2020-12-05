@@ -6,6 +6,7 @@ object AccountManager {
 //    static var config: Config? = nil
 //    static var account: BehaviorRelay<Account?> = BehaviorRelay(value: nil)
 //    static var accountCode: String? = nil
-//    static var phone: String? = nil
+    var phone: String? = null
+    var token: String? = null
 
 }

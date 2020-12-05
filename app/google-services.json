@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "280461770800",
+    "firebase_url": "https://quynhlamryan-a5ca1.firebaseio.com",
+    "project_id": "quynhlamryan-a5ca1",
+    "storage_bucket": "quynhlamryan-a5ca1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280461770800:android:3337be687e23a206c3adf5",
+        "android_client_info": {
+          "package_name": "com.quynhlamryan.crm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280461770800-fsj6lrverc2gooijgi3g25b920muhdqb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quynhlamryan.crm",
+            "certificate_hash": "a12943fd198e77a7c82e2eb79f0b3bc173b805aa"
+          }
+        },
+        {
+          "client_id": "280461770800-qu0bs8v6f16ufnphq40hofhr7it4eatg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuWmu6vMp95YM9paCaWs1T9mXPjjC1OKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280461770800-qu0bs8v6f16ufnphq40hofhr7it4eatg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "280461770800-hj2jemtvupk08i7h1etlgv6dmkl6ql97.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ryan.quynhlam.crm.CRM"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

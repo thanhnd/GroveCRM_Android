@@ -10,7 +10,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.quynhlamryan.crm.R
-import com.quynhlamryan.crm.ui.OtpActivity
+import com.quynhlamryan.crm.ui.otp.OtpActivity
 import com.quynhlamryan.crm.utils.AccountManager
 import kotlinx.android.synthetic.main.activity_input_phone.*
 
@@ -52,6 +52,7 @@ class InputPhoneActivity : AppCompatActivity() {
         inputPhoneViewModel.getOtp(phoneNumber)?.observe(this, {
             val accountCode = it ?: return@observe
             AccountManager.accountCode = accountCode
+            AccountManager.phone = phoneNumber
 
             val intent = Intent(this, OtpActivity::class.java)
             startActivity(intent)
