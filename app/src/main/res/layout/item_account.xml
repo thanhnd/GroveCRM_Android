@@ -1,0 +1,94 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvAccountName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="1"
+            android:textAllCaps="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/teal_800"
+            tools:text="NGUYEN NGOC TRUONG LOI" />
+
+        <TextView
+            android:id="@+id/tvAccountId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/content_vertical_padding"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
+            tools:text="123123123123123" />
+
+        <TextView
+            android:id="@+id/tvAccountType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/content_vertical_padding"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:text="New member" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/content_vertical_padding"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnMemberCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:background="@drawable/shape_stroke_border"
+                android:drawableTop="@drawable/ic_barcode"
+                android:textAllCaps="false"
+                android:textAppearance="?android:attr/textAppearanceInverse"
+                tools:text="@string/member_card" />
+
+            <Button
+                android:id="@+id/btnTransactionHistory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="@dimen/content_vertical_padding"
+                android:layout_weight="1"
+                android:background="@drawable/shape_stroke_border"
+                android:drawableTop="@drawable/ic_history"
+                android:textAllCaps="false"
+                android:textColor="@drawable/common_google_signin_btn_text_dark"
+                android:textAppearance="?android:attr/textAppearanceInverse"
+                tools:text="Lịch Sử Điểm" />
+
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

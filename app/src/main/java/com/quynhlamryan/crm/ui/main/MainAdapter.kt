@@ -35,7 +35,7 @@ class MainAdapter() :
                 .with(containerView.context)
                 .load(article.imageUrl)
                 .centerCrop()
-                .into(ivImage);
+                .into(ivArticleImage);
         }
     }
 

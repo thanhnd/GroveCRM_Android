@@ -10,34 +10,77 @@ import androidx.lifecycle.ViewModelProvider
 import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.data.model.Article
 import com.quynhlamryan.crm.ui.browser.BrowserActivity
+import com.quynhlamryan.crm.ui.main.ArticleSection.ClickListener
 import com.quynhlamryan.crm.ui.mapstore.MapStoreActivity
-import com.quynhlamryan.crm.utils.Logger
+import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
     lateinit var mainActivityViewModel: MainActivityViewModel
-    private val adapter = MainAdapter()
-
+//    private val adapter = MainAdapter()
+    private lateinit var sectionAdapter: SectionedRecyclerViewAdapter
+    private var articleSection: ArticleSection? = null
+    private var accountSection: AccountSection? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-        adapter.onItemClick = { article ->
-            Logger.d(article.title)
-            openBrowser(article)
-        }
-        rvMain.adapter = adapter
+//        adapter.onItemClick = { article ->
+//            Logger.d(article.title)
+//            openBrowser(article)
+//        }
+//        rvMain.adapter = adapter
+        sectionAdapter = SectionedRecyclerViewAdapter()
 
+        accountSection = AccountSection(
+            object : AccountSection.ClickListener {
+                override fun onMemberCardClicked() {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onTransactionHistoryClicked() {
+                    TODO("Not yet implemented")
+                }
+
+            })
+        sectionAdapter.addSection(accountSection)
+
+        articleSection = ArticleSection(
+            resources.getString(R.string.news),
+            object : ClickListener {
+                override fun onItemRootViewClicked(
+                    section: ArticleSection?,
+                    article: Article
+                ) {
+                    openBrowser(article)
+                }
+            })
+
+        sectionAdapter.addSection(articleSection)
+        rvMain.adapter = sectionAdapter
     }
 
     override fun onStart() {
         super.onStart()
 
-        mainActivityViewModel.getArticles()!!.observe(this, Observer { articles ->
-            adapter.articles = articles
+        mainActivityViewModel.getArticles()?.observe(this, Observer { articles ->
+            articleSection?.apply {
+                setList(articles)
+                sectionAdapter.notifyDataSetChanged()
+            }
+        })
+
+        mainActivityViewModel.getAccount()?.observe(this, Observer { account ->
+            accountSection?.apply {
+                account?.let { account->
+                    setList(account)
+                    sectionAdapter.notifyDataSetChanged()
+                }
+
+            }
         })
     }
 

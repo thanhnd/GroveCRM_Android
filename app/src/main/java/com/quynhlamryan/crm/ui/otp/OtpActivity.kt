@@ -13,6 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.quynhlamryan.crm.Constants
 import com.quynhlamryan.crm.R
+import com.quynhlamryan.crm.data.ApiClient.lazyMgr
 import com.quynhlamryan.crm.ui.main.MainActivity
 import com.quynhlamryan.crm.utils.AccountManager
 import com.quynhlamryan.crm.utils.Logger
@@ -148,9 +149,11 @@ class OtpActivity : AppCompatActivity() {
 
     private fun verifyPhoneNumberWithCode(verificationId: String?, code: String) {
         // [START verify_with_code]
-        val credential = PhoneAuthProvider.getCredential(verificationId!!, code)
-        // [END verify_with_code]
-        signInWithPhoneAuthCredential(credential)
+        verificationId?.let {verificationId ->
+            val credential = PhoneAuthProvider.getCredential(verificationId, code)
+            // [END verify_with_code]
+            signInWithPhoneAuthCredential(credential)
+        }
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
@@ -168,6 +171,7 @@ class OtpActivity : AppCompatActivity() {
                         otpViewModel.verifyOtp(userUID)?.observe(this, {
                             val token = it ?: return@observe
                             AccountManager.token = token
+                            lazyMgr.reset()
                             openMainActivity()
 
                             finish()
