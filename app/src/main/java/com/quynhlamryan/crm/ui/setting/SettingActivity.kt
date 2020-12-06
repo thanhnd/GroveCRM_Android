@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.quynhlamryan.crm.LoginActivity
 import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.ui.browser.BrowserActivity
+import com.quynhlamryan.crm.ui.transaction.TransactionActivity
 import com.quynhlamryan.crm.utils.AccountManager
 import kotlinx.android.synthetic.main.activity_setting.*
 
@@ -21,6 +22,13 @@ class SettingActivity : AppCompatActivity() {
         setTitle(R.string.setting)
 
         settingViewModel = ViewModelProvider(this).get(SettingViewModel::class.java)
+
+        cvTransaction.setOnClickListener {
+            Intent(this, TransactionActivity::class.java)
+                .apply {
+                    startActivity(this)
+                }
+        }
 
         tvAboutUs.setOnClickListener {
             val config = AccountManager.config ?: return@setOnClickListener

@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/cvTransaction"
         android:layout_marginRight="@dimen/activity_vertical_margin">
 
         <RelativeLayout
@@ -127,21 +128,21 @@
 
             <TextView
                 android:id="@+id/tvAboutUs"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/content_padding"
                 android:text="@string/about_us" />
 
             <TextView
                 android:id="@+id/tvPolicy"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/content_padding"
                 android:text="@string/policy" />
 
             <TextView
                 android:id="@+id/tvContactUs"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/content_padding"
                 android:text="@string/contact_us" />
