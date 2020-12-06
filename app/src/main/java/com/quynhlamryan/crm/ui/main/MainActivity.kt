@@ -12,13 +12,13 @@ import com.quynhlamryan.crm.data.model.Article
 import com.quynhlamryan.crm.ui.browser.BrowserActivity
 import com.quynhlamryan.crm.ui.main.ArticleSection.ClickListener
 import com.quynhlamryan.crm.ui.mapstore.MapStoreActivity
+import com.quynhlamryan.crm.ui.membercard.MemberCardActivity
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
     lateinit var mainActivityViewModel: MainActivityViewModel
-//    private val adapter = MainAdapter()
     private lateinit var sectionAdapter: SectionedRecyclerViewAdapter
     private var articleSection: ArticleSection? = null
     private var accountSection: AccountSection? = null
@@ -28,17 +28,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-//        adapter.onItemClick = { article ->
-//            Logger.d(article.title)
-//            openBrowser(article)
-//        }
-//        rvMain.adapter = adapter
         sectionAdapter = SectionedRecyclerViewAdapter()
 
         accountSection = AccountSection(
             object : AccountSection.ClickListener {
                 override fun onMemberCardClicked() {
-                    TODO("Not yet implemented")
+                    openMemberCard()
                 }
 
                 override fun onTransactionHistoryClicked() {
@@ -114,6 +109,13 @@ class MainActivity : AppCompatActivity() {
                 putExtra(BrowserActivity.TITLE, article.title)
                 putExtra(BrowserActivity.URL, article.url)
                 putExtra(BrowserActivity.CONTENT, article.content)
+                startActivity(this)
+            }
+    }
+
+    private fun openMemberCard() {
+        Intent(this, MemberCardActivity::class.java)
+            .apply {
                 startActivity(this)
             }
     }
