@@ -13,6 +13,7 @@ import com.quynhlamryan.crm.ui.browser.BrowserActivity
 import com.quynhlamryan.crm.ui.main.ArticleSection.ClickListener
 import com.quynhlamryan.crm.ui.mapstore.MapStoreActivity
 import com.quynhlamryan.crm.ui.membercard.MemberCardActivity
+import com.quynhlamryan.crm.ui.transaction.TransactionActivity
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -37,9 +38,8 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onTransactionHistoryClicked() {
-                    TODO("Not yet implemented")
+                    openTransactionHistory()
                 }
-
             })
         sectionAdapter.addSection(accountSection)
 
@@ -115,6 +115,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun openMemberCard() {
         Intent(this, MemberCardActivity::class.java)
+            .apply {
+                startActivity(this)
+            }
+    }
+
+    private fun openTransactionHistory() {
+        Intent(this, TransactionActivity::class.java)
             .apply {
                 startActivity(this)
             }

@@ -1,0 +1,158 @@
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/activity_vertical_margin"
+    android:background="@drawable/shape_stroke_top"
+    android:orientation="vertical">
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:text="Siêu thị"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tvStore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            tools:text="Lorem ipsum dolor sit amet"
+            android:lines="1"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:text="Mã hoá đơn"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tvReceiptNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            tools:text="Lorem ipsum dolor sit amet"
+            android:lines="1"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:text="Ngày xuất"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tvOrderDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            tools:text="Lorem ipsum dolor sit amet"
+            android:lines="1"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:text="Giá trị"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tvAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            tools:text="Lorem ipsum dolor sit amet"
+            android:lines="1"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:text="Trả hàng"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tvRefund"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            tools:text="Lorem ipsum dolor sit amet"
+            android:lines="1"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:text="Điểm tích lũy"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tvSavedPoint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            tools:text="Lorem ipsum dolor sit amet"
+            android:lines="1"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:text="Điểm sử dụng"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tvUsedPoint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            tools:text="Lorem ipsum dolor sit amet"
+            android:lines="1"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+
+</TableLayout>

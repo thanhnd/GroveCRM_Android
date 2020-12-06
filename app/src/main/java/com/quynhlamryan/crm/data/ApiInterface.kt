@@ -1,9 +1,6 @@
 package com.quynhlamryan.crm.data
 
-import com.quynhlamryan.crm.data.model.Account
-import com.quynhlamryan.crm.data.model.Article
-import com.quynhlamryan.crm.data.model.ResponseResult
-import com.quynhlamryan.crm.data.model.Store
+import com.quynhlamryan.crm.data.model.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -46,4 +43,7 @@ interface ApiInterface {
 
     @GET("api/Users/getlistmymessage/")
     fun getInbox(): Call<ResponseResult<Account>>
+
+    @GET("api/CRMPointPOS/viewlisttransactionhistory/")
+    fun getListTransactions(): Call<ResponseResult<TransactionHistory>>
 }

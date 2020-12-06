@@ -3,27 +3,27 @@ package com.quynhlamryan.crm.data.model
 import com.google.gson.annotations.SerializedName
 
 
-class TransactionHistory {
+data class TransactionHistory(
     @SerializedName("tongDiem")
-    var totalScore: String? = null
-    var listItem: List<TransactionItem>? = null
-}
+    var totalScore: String? = null,
+    var listItem: List<TransactionItem>? = listOf()
+)
 
-class TransactionItem {
-    var id: Long? = null
+data class TransactionItem(
+    var id: Long? = null,
     @SerializedName("noiMuaHang")
-    var store: String? = null
+    var store: String? = null,
     @SerializedName("soHoaDon")
-    var receiptNumber: String? = null
+    var receiptNumber: String? = null,
     @SerializedName("ngayHoaDon")
-    var createdDate: String? = null
+    var createdDate: String? = null,
     @SerializedName("tongTienMuaHang")
-    var amount: String? = null
+    var amount: String? = null,
     @SerializedName("traHang")
-    var refund: String? = null
+    var refund: String? = null,
     @SerializedName("diemTichLuy")
-    var score: String? = null
+    var score: String? = null,
     @SerializedName("diemSuDung")
     var usedScore: String? = null
-}
+)
 

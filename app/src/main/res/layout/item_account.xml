@@ -87,7 +87,7 @@
                 android:textAllCaps="false"
                 android:textColor="@drawable/common_google_signin_btn_text_dark"
                 android:textAppearance="?android:attr/textAppearanceInverse"
-                tools:text="Lịch Sử Điểm" />
+                tools:text="@string/transaction_history" />
 
         </LinearLayout>
     </LinearLayout>

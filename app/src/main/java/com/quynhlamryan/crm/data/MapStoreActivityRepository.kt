@@ -2,8 +2,8 @@ package com.quynhlamryan.crm.data
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.quynhlamryan.crm.data.model.Store
 import com.quynhlamryan.crm.data.model.ResponseResult
+import com.quynhlamryan.crm.data.model.Store
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,7 +17,6 @@ object MapStoreActivityRepository {
 
         call.enqueue(object: Callback<ResponseResult<List<Store>>> {
             override fun onFailure(call: Call<ResponseResult<List<Store>>>, t: Throwable) {
-                // TODO("Not yet implemented")
                 Log.v("DEBUG : ", t.message.toString())
             }
 
@@ -25,7 +24,6 @@ object MapStoreActivityRepository {
                 call: Call<ResponseResult<List<Store>>>,
                 response: Response<ResponseResult<List<Store>>>
             ) {
-                // TODO("Not yet implemented")
                 Log.v("DEBUG : ", response.body().toString())
 
                 stores.value = response.body()?.resultObj

@@ -6,5 +6,8 @@
     <string name="click_continue_to_receive_otp">Nhấn vào Tiếp Tục để xác minh số điện thoại của bạn. Chúng tôi sẽ gửi SMS để xác minh.</string>
     <string name="title_activity_input_phone">Nhập Số Điện Thoại</string>
     <string name="title_activity_opt">Nhập Mã Xác Nhận</string>
+    <string name="no_transaction">Bạn chưa có giao dịch nào.</string>
+    <string name="transaction_history">Lịch Sử Điểm</string>
+    <string name="total_score">Tổng điểm: %s</string>
 
 </resources>

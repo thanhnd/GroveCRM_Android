@@ -24,4 +24,7 @@
     <string name="click_continue_to_receive_otp">Click continue to verify your phone number. We will send SMS to verify.</string>
     <string name="news">News</string>
     <string name="member_card">Member Card</string>
+    <string name="no_transaction">You don\'t have any transaction yet.</string>
+    <string name="transaction_history">Transaction History</string>
+    <string name="total_score">Total Score: %s</string>
 </resources>

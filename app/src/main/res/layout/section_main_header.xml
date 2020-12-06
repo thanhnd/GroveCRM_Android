@@ -16,7 +16,6 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textAllCaps="true"
         tools:text="Title test text"/>

@@ -22,7 +22,7 @@
         android:inputType="phone"
         android:selectAllOnFocus="true"
         android:tag="+84 "
-        android:text="0774265130"
+        android:text="0704635105"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
