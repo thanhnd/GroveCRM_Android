@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.quynhlamryan.crm.data.MainActivityRepository
 import com.quynhlamryan.crm.data.model.Account
 import com.quynhlamryan.crm.data.model.Article
-import com.quynhlamryan.crm.utils.AccountManager
 
 class MainActivityViewModel : ViewModel() {
 
@@ -20,7 +19,6 @@ class MainActivityViewModel : ViewModel() {
 
     fun getAccount() : LiveData<Account>? {
         this.ldAccount = MainActivityRepository.getAccount()
-        AccountManager.account = ldAccount?.value
         return this.ldAccount
     }
 }

@@ -30,7 +30,7 @@ interface ApiInterface {
     fun getListStores(): Call<ResponseResult<List<Store>>>
 
     @GET("api/CRMConfig/getlistconfig/")
-    fun getConfig(): Call<ResponseResult<Account>>
+    fun getConfig(): Call<ResponseResult<Config>>
 
     @PUT("api/Users/updateuserprofile/")
     fun updateUserProfile(): Call<ResponseResult<Account>>

@@ -7,13 +7,17 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.data.model.Article
 import com.quynhlamryan.crm.ui.browser.BrowserActivity
+import com.quynhlamryan.crm.ui.inputPhone.InputPhoneActivity
 import com.quynhlamryan.crm.ui.main.ArticleSection.ClickListener
 import com.quynhlamryan.crm.ui.mapstore.MapStoreActivity
 import com.quynhlamryan.crm.ui.membercard.MemberCardActivity
+import com.quynhlamryan.crm.ui.setting.SettingActivity
 import com.quynhlamryan.crm.ui.transaction.TransactionActivity
+import com.quynhlamryan.crm.utils.AccountManager
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -27,6 +31,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setSupportActionBar(toolbar)
+
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
         sectionAdapter = SectionedRecyclerViewAdapter()
@@ -56,6 +63,24 @@ class MainActivity : AppCompatActivity() {
 
         sectionAdapter.addSection(articleSection)
         rvMain.adapter = sectionAdapter
+
+        ivAvatar.setOnClickListener {
+            AccountManager.account?.let {
+                openSetting()
+            } ?: run {
+                AccountManager.logout()
+                val intent = Intent(applicationContext, InputPhoneActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+            }
+        }
+    }
+
+    private fun openSetting() {
+        Intent(this, SettingActivity::class.java)
+            .apply {
+                startActivity(this)
+            }
     }
 
     override fun onStart() {
@@ -70,11 +95,17 @@ class MainActivity : AppCompatActivity() {
 
         mainActivityViewModel.getAccount()?.observe(this, Observer { account ->
             accountSection?.apply {
-                account?.let { account->
+                account?.let { account ->
+                    AccountManager.account = account
                     setList(account)
                     sectionAdapter.notifyDataSetChanged()
-                }
 
+                    Glide
+                        .with(this@MainActivity)
+                        .load(account.urlAvatar)
+                        .circleCrop()
+                        .into(ivAvatar)
+                }
             }
         })
     }

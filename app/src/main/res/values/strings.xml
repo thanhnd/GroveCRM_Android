@@ -27,4 +27,12 @@
     <string name="no_transaction">You don\'t have any transaction yet.</string>
     <string name="transaction_history">Transaction History</string>
     <string name="total_score">Total Score: %s</string>
+    <string name="profile_info">Profile Info</string>
+    <string name="about_us">About Us</string>
+    <string name="policy">Policy</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="logout">Log Out</string>
+    <string name="hot_line">Hotline: %s</string>
+    <string name="setting">Settings</string>
+    <string name="score">Score: %s</string>
 </resources>

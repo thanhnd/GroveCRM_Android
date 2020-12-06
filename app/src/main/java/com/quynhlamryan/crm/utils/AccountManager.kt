@@ -32,4 +32,11 @@ object AccountManager {
             }
 
         }
+
+    fun logout() {
+        account = null
+        config = null
+        accountCode = null
+    }
+
 }

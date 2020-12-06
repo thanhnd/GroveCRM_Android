@@ -9,5 +9,21 @@
     <string name="no_transaction">Bạn chưa có giao dịch nào.</string>
     <string name="transaction_history">Lịch Sử Điểm</string>
     <string name="total_score">Tổng điểm: %s</string>
+    <string name="logout">Đăng Xuất</string>
+    <string name="contact_us">Liên Hệ</string>
+    <string name="policy">Điều Khoản Sử Dụng</string>
+    <string name="about_us">Giới Thiệu</string>
+    <string name="profile_info">Thông Tin Cá Nhân</string>
+    <string name="member_card">Thẻ Thành Viên</string>
+    <string name="news">Tin Tức</string>
+    <string name="next">Tiếp Tục</string>
+    <string name="previous">Quay Lại</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_phone">Số Điện Thoại</string>
+    <string name="prompt_password">Mật Khẩu</string>
+    <string name="action_next">Tiếp Tục</string>
+    <string name="hot_line">Hotline: %s</string>
+    <string name="setting">Cài Đặt</string>
+    <string name="score">%s điểm</string>
 
 </resources>
