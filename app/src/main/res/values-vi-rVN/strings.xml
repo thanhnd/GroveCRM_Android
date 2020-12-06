@@ -25,5 +25,7 @@
     <string name="hot_line">Hotline: %s</string>
     <string name="setting">Cài Đặt</string>
     <string name="score">%s điểm</string>
+    <string name="fullname">Họ Tên</string>
+
 
 </resources>

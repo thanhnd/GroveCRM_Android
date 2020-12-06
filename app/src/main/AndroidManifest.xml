@@ -45,6 +45,7 @@
         <activity android:name=".ui.browser.BrowserActivity" />
         <activity android:name=".ui.transaction.TransactionActivity" />
         <activity android:name=".ui.setting.SettingActivity" />
+        <activity android:name=".ui.profile.ProfileActivity" />
     </application>
 
 </manifest>

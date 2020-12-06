@@ -1,10 +1,10 @@
 package com.quynhlamryan.crm.data
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.quynhlamryan.crm.data.model.Account
 import com.quynhlamryan.crm.data.model.Article
 import com.quynhlamryan.crm.data.model.ResponseResult
+import com.quynhlamryan.crm.utils.Logger
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,7 +20,7 @@ object MainActivityRepository {
         call.enqueue(object: Callback<ResponseResult<List<Article>>> {
             override fun onFailure(call: Call<ResponseResult<List<Article>>>, t: Throwable) {
                 // TODO("Not yet implemented")
-                Log.v("DEBUG : ", t.message.toString())
+                Logger.w(t)
             }
 
             override fun onResponse(
@@ -28,7 +28,7 @@ object MainActivityRepository {
                 response: Response<ResponseResult<List<Article>>>
             ) {
                 // TODO("Not yet implemented")
-                Log.v("DEBUG : ", response.body().toString())
+                Logger.d(response.body().toString())
                 ldArticles.value = response.body()?.resultObj
             }
         })
@@ -42,14 +42,14 @@ object MainActivityRepository {
 
         call.enqueue(object: Callback<ResponseResult<Account>> {
             override fun onFailure(call: Call<ResponseResult<Account>>, t: Throwable) {
-                Log.v("DEBUG : ", t.message.toString())
+                Logger.d(t.message.toString())
             }
 
             override fun onResponse(
                 call: Call<ResponseResult<Account>>,
                 response: Response<ResponseResult<Account>>
             ) {
-                Log.v("DEBUG : ", response.body().toString())
+                Logger.d(response.body().toString())
                 ldAccount.value = response.body()?.resultObj
             }
         })

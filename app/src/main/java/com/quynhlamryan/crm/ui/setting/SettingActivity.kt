@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.quynhlamryan.crm.LoginActivity
 import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.ui.browser.BrowserActivity
+import com.quynhlamryan.crm.ui.profile.ProfileActivity
 import com.quynhlamryan.crm.ui.transaction.TransactionActivity
 import com.quynhlamryan.crm.utils.AccountManager
 import kotlinx.android.synthetic.main.activity_setting.*
@@ -25,6 +26,13 @@ class SettingActivity : AppCompatActivity() {
 
         cvTransaction.setOnClickListener {
             Intent(this, TransactionActivity::class.java)
+                .apply {
+                    startActivity(this)
+                }
+        }
+
+        cvProfile.setOnClickListener {
+            Intent(this, ProfileActivity::class.java)
                 .apply {
                     startActivity(this)
                 }

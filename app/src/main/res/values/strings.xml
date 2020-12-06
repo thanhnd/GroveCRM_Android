@@ -35,4 +35,11 @@
     <string name="hot_line">Hotline: %s</string>
     <string name="setting">Settings</string>
     <string name="score">Score: %s</string>
+    <string name="fullname">Full Name</string>
+    <string name="birthday">Birthday</string>
+    <string name="phone_number">Phone number</string>
+    <string name="email">Email</string>
+    <string name="action_done">Apply</string>
+    <string name="prompt_full_name">Input your full name</string>
+    <string name="prompt_birthday">Input your birthday</string>
 </resources>
