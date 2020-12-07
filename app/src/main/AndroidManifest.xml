@@ -45,7 +45,8 @@
         <activity android:name=".ui.browser.BrowserActivity" />
         <activity android:name=".ui.transaction.TransactionActivity" />
         <activity android:name=".ui.setting.SettingActivity" />
-        <activity android:name=".ui.profile.ProfileActivity" />
+        <activity android:name=".ui.profile.ProfileActivity"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>

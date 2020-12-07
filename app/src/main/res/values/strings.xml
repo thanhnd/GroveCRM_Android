@@ -42,4 +42,10 @@
     <string name="action_done">Apply</string>
     <string name="prompt_full_name">Input your full name</string>
     <string name="prompt_birthday">Input your birthday</string>
+    <string name="error_empty_name">Please input your name.</string>
+    <string name="error_empty_email">Please input your email.</string>
+    <string name="error_empty_birthday">Please enter your birthday.</string>
+    <string name="error_name_too_long">"Name should not exceed 100 chacraters. "</string>
+    <string name="error_email_too_long">Email should not be ecceed 100 characters.</string>
+    <string name="error_email_invalid">Invalid email.</string>
 </resources>

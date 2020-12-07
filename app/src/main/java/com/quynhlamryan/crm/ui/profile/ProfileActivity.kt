@@ -1,6 +1,7 @@
 package com.quynhlamryan.crm.ui.profile
 
 import android.os.Bundle
+import android.util.Patterns
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
@@ -24,12 +25,15 @@ class ProfileActivity : AppCompatActivity() {
         profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         btnDone.setOnClickListener {
-
-            profileViewModel.updateAccount(name, birthday, email)?.observe(this, Observer { isSuccess ->
-                if (isSuccess) {
-                    finish()
-                }
-            })
+            if (!isValidInput()) {
+                return@setOnClickListener
+            }
+            profileViewModel.updateAccount(name, birthday, email)
+                ?.observe(this, Observer { isSuccess ->
+                    if (isSuccess) {
+                        finish()
+                    }
+                })
         }
 
         edtFullName.addTextChangedListener {
@@ -43,6 +47,44 @@ class ProfileActivity : AppCompatActivity() {
         edtEmail.addTextChangedListener {
             email = it?.toString()
         }
+    }
+
+    private fun isValidInput(): Boolean {
+        var result = true
+        AccountManager.account?.let { account->
+            if (!account.fullName.isNullOrEmpty()) {
+                if (name.isNullOrEmpty()) {
+                    edtFullName.error = getString(R.string.error_empty_name)
+                    result = false
+                } else if (name!!.length > 100) {
+                    edtFullName.error = getString(R.string.error_name_too_long)
+                    result = false
+                }
+            }
+
+            if (!account.email.isNullOrEmpty()) {
+                if (email.isNullOrEmpty()) {
+                    edtEmail.error = getString(R.string.error_empty_email)
+                    result = false
+                } else if (email!!.length > 100) {
+                    edtEmail.error = getString(R.string.error_email_too_long)
+                    result = false
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    edtEmail.error = getString(R.string.error_email_invalid)
+                    result = false
+                }
+            }
+
+            if (!account.dob.isNullOrEmpty()) {
+                if (birthday.isNullOrEmpty()) {
+                    edtBirthday.error = getString(R.string.error_empty_birthday)
+                    result = false
+                }
+            }
+        }
+
+
+        return result
     }
 
     override fun onStart() {
