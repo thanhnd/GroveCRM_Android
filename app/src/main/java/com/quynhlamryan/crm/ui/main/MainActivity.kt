@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.quynhlamryan.crm.R
+import com.quynhlamryan.crm.data.model.Account
 import com.quynhlamryan.crm.data.model.Article
 import com.quynhlamryan.crm.ui.browser.BrowserActivity
 import com.quynhlamryan.crm.ui.inputPhone.InputPhoneActivity
@@ -97,7 +98,7 @@ class MainActivity : AppCompatActivity() {
             accountSection?.apply {
                 account?.let { account ->
                     AccountManager.account = account
-                    setList(account)
+                    setAccount(account)
                     sectionAdapter.notifyDataSetChanged()
 
                     Glide
@@ -108,6 +109,34 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+
+        mainActivityViewModel.getAccount()?.observe(this, Observer { account ->
+            accountSection?.apply {
+                account?.let { account ->
+                    bindAccount(account)
+                }
+            }
+        })
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        AccountManager.account?.let { account ->
+            bindAccount(account)
+        }
+    }
+
+    private fun bindAccount(account: Account) {
+        AccountManager.account = account
+        accountSection?.setAccount(account)
+        sectionAdapter.notifyDataSetChanged()
+
+        Glide
+            .with(this@MainActivity)
+            .load(account.urlAvatar)
+            .circleCrop()
+            .into(ivAvatar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

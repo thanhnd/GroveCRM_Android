@@ -1,11 +1,9 @@
 package com.quynhlamryan.crm.data
 
 import com.quynhlamryan.crm.data.model.*
+import com.quynhlamryan.crm.data.request.AccountRequest
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiInterface {
     @GET("api/Users/getuserinfo")
@@ -33,7 +31,7 @@ interface ApiInterface {
     fun getConfig(): Call<ResponseResult<Config>>
 
     @PUT("api/Users/updateuserprofile/")
-    fun updateUserProfile(): Call<ResponseResult<Account>>
+    fun updateUserProfile(@Body request: AccountRequest): Call<ResponseResult<Boolean>>
 
     @POST("api/Users/uploadavatar/")
     fun uploadAvatar(): Call<ResponseResult<Account>>

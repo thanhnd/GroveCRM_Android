@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.quynhlamryan.crm.data.MainActivityRepository
+import com.quynhlamryan.crm.data.ProfileRepository
 import com.quynhlamryan.crm.data.model.Account
 import com.quynhlamryan.crm.data.model.Article
 
@@ -18,7 +19,7 @@ class MainActivityViewModel : ViewModel() {
     }
 
     fun getAccount() : LiveData<Account>? {
-        this.ldAccount = MainActivityRepository.getAccount()
+        this.ldAccount = ProfileRepository.getAccount()
         return this.ldAccount
     }
 }

@@ -8,7 +8,6 @@ import com.quynhlamryan.crm.data.model.Account
 import io.github.luizgrp.sectionedrecyclerviewadapter.Section
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionParameters
 import io.github.luizgrp.sectionedrecyclerviewadapter.utils.EmptyViewHolder
-import java.util.*
 
 internal class AccountSection(
     private val clickListener: ClickListener
@@ -17,14 +16,13 @@ internal class AccountSection(
         .itemResourceId(R.layout.item_account)
         .build()
 ) {
-    private val list: MutableList<Account>
-    fun setList(list: Account) {
-        this.list.clear()
-        this.list.add(list)
+    private var account: Account? = null
+    fun setAccount(account: Account) {
+        this.account = account
     }
 
     override fun getContentItemsTotal(): Int {
-        return list.size
+        return if (account != null)  1 else  0 
     }
 
     override fun getItemViewHolder(view: View): RecyclerView.ViewHolder {
@@ -33,7 +31,7 @@ internal class AccountSection(
 
     override fun onBindItemViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val itemHolder = holder as AccountSection.ItemViewHolder
-        val account = list[position]
+        val account = account ?: return
         itemHolder.tvAccountName.text = account.fullName
         itemHolder.tvAccountId.text = account.userName
         itemHolder.tvAccountType.text = account.typeMember
@@ -54,10 +52,6 @@ internal class AccountSection(
     internal interface ClickListener {
         fun onMemberCardClicked()
         fun onTransactionHistoryClicked()
-    }
-
-    init {
-        list = ArrayList()
     }
 
     internal class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

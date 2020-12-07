@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.quynhlamryan.crm.LoginActivity
 import com.quynhlamryan.crm.R
+import com.quynhlamryan.crm.data.model.Account
 import com.quynhlamryan.crm.ui.browser.BrowserActivity
 import com.quynhlamryan.crm.ui.profile.ProfileActivity
 import com.quynhlamryan.crm.ui.transaction.TransactionActivity
@@ -70,20 +71,32 @@ class SettingActivity : AppCompatActivity() {
         super.onStart()
 
         AccountManager.account?.let { account ->
-            Glide
-                .with(this)
-                .load(account.urlAvatar)
-                .circleCrop()
-                .into(ivAvatar)
-            tvAccountName.text = account.fullName
-            tvPhone.text = account.phoneNumber
-            tvMemberType.text = account.typeMember
-            tvScore.text = getString(R.string.score, "${account.total ?: 0}")
+            bindAccount(account)
         }
 
         settingViewModel.getListTransactions()?.observe(this, Observer { config ->
             AccountManager.config = config
             tvHotLine.text = getString(R.string.hot_line, (config.hotline ?: ""))
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        settingViewModel.getAccount()?.observe(this, Observer { account ->
+            AccountManager.account = account
+            bindAccount(account)
+        })
+    }
+
+    private fun bindAccount(account: Account) {
+        Glide
+            .with(this)
+            .load(account.urlAvatar)
+            .circleCrop()
+            .into(ivAvatar)
+        tvAccountName.text = account.fullName
+        tvPhone.text = account.phoneNumber
+        tvMemberType.text = account.typeMember
+        tvScore.text = getString(R.string.score, "${account.total ?: 0}")
     }
 }
