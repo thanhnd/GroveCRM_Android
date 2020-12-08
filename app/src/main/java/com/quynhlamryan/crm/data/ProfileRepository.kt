@@ -6,6 +6,7 @@ import com.quynhlamryan.crm.data.model.Account
 import com.quynhlamryan.crm.data.model.ResponseResult
 import com.quynhlamryan.crm.data.request.AccountRequest
 import com.quynhlamryan.crm.utils.Logger
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,6 +18,26 @@ object ProfileRepository {
     fun updateProfile(request: AccountRequest): MutableLiveData<Boolean> {
 
         val call = ApiClient.apiInterface.updateUserProfile(request)
+
+        call.enqueue(object: Callback<ResponseResult<Boolean>> {
+            override fun onFailure(call: Call<ResponseResult<Boolean>>, t: Throwable) {
+                Log.v("DEBUG : ", t.message.toString())
+            }
+
+            override fun onResponse(
+                call: Call<ResponseResult<Boolean>>,
+                response: Response<ResponseResult<Boolean>>
+            ) {
+                ldResult.value = response.body()?.isSuccessed
+            }
+        })
+
+        return ldResult
+    }
+
+    fun uploadAvatar(request: MultipartBody.Part): MutableLiveData<Boolean> {
+
+        val call = ApiClient.apiInterface.uploadAvatar(request)
 
         call.enqueue(object: Callback<ResponseResult<Boolean>> {
             override fun onFailure(call: Call<ResponseResult<Boolean>>, t: Throwable) {

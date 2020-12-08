@@ -2,6 +2,7 @@ package com.quynhlamryan.crm.data
 
 import com.quynhlamryan.crm.data.model.*
 import com.quynhlamryan.crm.data.request.AccountRequest
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -33,8 +34,9 @@ interface ApiInterface {
     @PUT("api/Users/updateuserprofile/")
     fun updateUserProfile(@Body request: AccountRequest): Call<ResponseResult<Boolean>>
 
+    @Multipart
     @POST("api/Users/uploadavatar/")
-    fun uploadAvatar(): Call<ResponseResult<Account>>
+    fun uploadAvatar(@Part file: MultipartBody.Part): Call<ResponseResult<Boolean>>
 
     @POST("api/CRMCFMTokens/addfcmtoken/")
     fun addFcmToken(): Call<ResponseResult<Account>>

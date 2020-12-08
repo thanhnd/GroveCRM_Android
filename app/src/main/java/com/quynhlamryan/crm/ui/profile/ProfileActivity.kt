@@ -1,10 +1,19 @@
 package com.quynhlamryan.crm.ui.profile
 
+import android.Manifest
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Patterns
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,17 +23,63 @@ import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.utils.AccountManager
 import com.quynhlamryan.crm.utils.Logger
 import kotlinx.android.synthetic.main.activity_profile.*
+import java.io.FileNotFoundException
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class ProfileActivity : AppCompatActivity() {
+
     private var dateOfBirth: Date? = null
     lateinit var profileViewModel: ProfileViewModel
     private var name: String? = null
     private var birthday: String? = null
     private var email: String? = null
+
+    var requestImageLauncher = registerForActivityResult(
+        StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            // There are no request code
+            val data = result.data
+            data?.data?.let { selectedImage ->
+                val filePath = getPath(selectedImage)
+                val file_extn = filePath.substring(filePath.lastIndexOf(".") + 1)
+                Logger.d(filePath)
+                try {
+                    if (file_extn == "img" || file_extn == "jpg" || file_extn == "jpeg" || file_extn == "gif" || file_extn == "png") {
+                        profileViewModel.uploadAvatar(filePath)
+                            ?.observe(this, Observer { isSuccess ->
+                                if (isSuccess) {
+                                    finish()
+                                }
+                            })
+                    } else {
+                        //NOT IN REQUIRED FORMAT
+                    }
+                } catch (e: FileNotFoundException) {
+                    // TODO Auto-generated catch block
+                    Logger.e(e)
+                }
+            }
+        }
+    }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                chooseImage()
+            } else {
+                // Explain to the user that the feature is unavailable because the
+                // features requires a permission that the user has denied. At the
+                // same time, respect the user's decision. Don't link to system
+                // settings in an effort to convince the user to change their
+                // decision.
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +115,44 @@ class ProfileActivity : AppCompatActivity() {
         edtBirthday.setOnClickListener {
             showDatePicker()
         }
+        ivAvatar.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= 23) {
+                val permissionCheck = ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                )
+                if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissionLauncher.launch(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    return@setOnClickListener
+                }
+            }
+
+            chooseImage()
+        }
+    }
+
+
+    private fun getPath(uri: Uri): String {
+        var res: String? = null
+        val proj = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor = contentResolver.query(uri, proj, null, null, null)
+
+        cursor?.apply {
+            if (moveToFirst()) {
+                val columnIndex = getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                res = getString(columnIndex)
+            }
+            close()
+        }
+        return res ?: ""
+    }
+
+    private fun chooseImage() {
+        val photoPickerIntent = Intent(Intent.ACTION_PICK)
+        photoPickerIntent.type = "image/*"
+        requestImageLauncher.launch(photoPickerIntent)
+
     }
 
     private fun showDatePicker() {
@@ -169,6 +262,10 @@ class ProfileActivity : AppCompatActivity() {
 
         val sdf = SimpleDateFormat(Constants.dateFormat)
         edtBirthday.setText(sdf.format(calendar.time))
+    }
+
+    companion object {
+        const val REQUEST_PERMISSION_EXTERNAL_STORAGE = 1
     }
 
 }

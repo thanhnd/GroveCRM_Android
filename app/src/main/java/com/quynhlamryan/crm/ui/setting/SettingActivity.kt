@@ -32,11 +32,13 @@ class SettingActivity : AppCompatActivity() {
                 }
         }
 
+        ivAvatar.setOnClickListener {
+            openProfile()
+        }
+
         cvProfile.setOnClickListener {
-            Intent(this, ProfileActivity::class.java)
-                .apply {
-                    startActivity(this)
-                }
+            openProfile()
+
         }
 
         tvAboutUs.setOnClickListener {
@@ -67,6 +69,13 @@ class SettingActivity : AppCompatActivity() {
         }
     }
 
+    private fun openProfile() {
+        Intent(this, ProfileActivity::class.java)
+            .apply {
+                startActivity(this)
+            }
+    }
+
     override fun onStart() {
         super.onStart()
 
@@ -83,8 +92,10 @@ class SettingActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         settingViewModel.getAccount()?.observe(this, Observer { account ->
-            AccountManager.account = account
-            bindAccount(account)
+            account?.let {
+                AccountManager.account = it
+                bindAccount(it)
+            }
         })
     }
 

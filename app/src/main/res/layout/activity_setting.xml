@@ -13,26 +13,13 @@
         android:orientation="vertical"
         tools:context=".ui.setting.SettingActivity">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/ivAvatar"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/activity_vertical_margin">
-
-            <ImageView
-                android:id="@+id/ivAvatar"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/shape_circle" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/ic_edit" />
-        </RelativeLayout>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@drawable/shape_circle" />
 
 
         <TextView
