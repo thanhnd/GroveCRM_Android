@@ -1,5 +1,7 @@
 package com.quynhlamryan.crm.ui.profile
 
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
 import android.util.Patterns
 import androidx.appcompat.app.AppCompatActivity
@@ -7,11 +9,18 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.quynhlamryan.crm.Constants
 import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.utils.AccountManager
+import com.quynhlamryan.crm.utils.Logger
 import kotlinx.android.synthetic.main.activity_profile.*
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class ProfileActivity : AppCompatActivity() {
+    private var dateOfBirth: Date? = null
     lateinit var profileViewModel: ProfileViewModel
     private var name: String? = null
     private var birthday: String? = null
@@ -47,11 +56,44 @@ class ProfileActivity : AppCompatActivity() {
         edtEmail.addTextChangedListener {
             email = it?.toString()
         }
+
+        edtBirthday.setOnClickListener {
+            showDatePicker()
+        }
+    }
+
+    private fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+        dateOfBirth.let {
+            calendar.time = dateOfBirth
+        }
+
+        val mYear = calendar[Calendar.YEAR]
+        val mMonth = calendar[Calendar.MONTH]
+        val mDay = calendar[Calendar.DAY_OF_MONTH]
+
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            myDateListener,
+            mYear,
+            mMonth,
+            mDay
+        )
+        val minCalendar = Calendar.getInstance()
+        minCalendar[Calendar.YEAR] = minCalendar[Calendar.YEAR] - 100
+        datePickerDialog.datePicker.minDate = minCalendar.timeInMillis
+
+        val maxCalendar = Calendar.getInstance()
+        maxCalendar[Calendar.YEAR] = maxCalendar[Calendar.YEAR] - 5
+        datePickerDialog.datePicker.maxDate = maxCalendar.timeInMillis
+        datePickerDialog.show()
+
     }
 
     private fun isValidInput(): Boolean {
         var result = true
-        AccountManager.account?.let { account->
+        AccountManager.account?.let { account ->
             if (!account.fullName.isNullOrEmpty()) {
                 if (name.isNullOrEmpty()) {
                     edtFullName.error = getString(R.string.error_empty_name)
@@ -83,7 +125,6 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
 
-
         return result
     }
 
@@ -100,6 +141,34 @@ class ProfileActivity : AppCompatActivity() {
             edtBirthday.setText(dob)
             edtPhone.setText(phoneNumber)
             edtEmail.setText(email)
+
+            if (!birthday.isNullOrEmpty())  {
+                val format = SimpleDateFormat(Constants.dateFormat)
+                try {
+                    dateOfBirth = format.parse(birthday!!)
+                } catch (e: ParseException) {
+                    Logger.e(e)
+                }
+            }
         }
     }
+
+    private val myDateListener =
+        OnDateSetListener { view, year, month, date -> // TODO Auto-generated method stub
+            // year = year
+            // month = month
+            // date = day
+            showDate(year, month, date)
+        }
+
+    private fun showDate(year: Int, month: Int, day: Int) {
+
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, day)
+        dateOfBirth = calendar.time
+
+        val sdf = SimpleDateFormat(Constants.dateFormat)
+        edtBirthday.setText(sdf.format(calendar.time))
+    }
+
 }
