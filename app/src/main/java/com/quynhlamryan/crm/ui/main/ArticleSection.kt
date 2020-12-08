@@ -42,9 +42,9 @@ internal class ArticleSection(
         itemHolder.tvTitle.text = article.title
         itemHolder.tvDescription.text = article.content
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            itemHolder.tvDescription.text = Html.fromHtml(article.content, Html.FROM_HTML_MODE_LEGACY)
+            itemHolder.tvDescription.text = Html.fromHtml(article.content, Html.FROM_HTML_MODE_LEGACY).toString()
         } else {
-            itemHolder.tvDescription.text = Html.fromHtml(article.content)
+            itemHolder.tvDescription.text = Html.fromHtml(article.content).toString()
         }
         Glide
             .with(itemHolder.rootView.context)
