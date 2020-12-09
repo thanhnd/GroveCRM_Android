@@ -31,7 +31,8 @@
             android:label="@string/title_activity_opt" />
         <activity android:name=".ui.main.MainActivity"
             android:theme="@style/Theme.QuynhLamRyan.NoActionBar"/>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity"
+            android:theme="@style/Theme.QuynhLamRyan.NoActionBar"/>
         <activity
             android:name=".ui.inputPhone.InputPhoneActivity"
             android:label="@string/title_activity_input_phone" />

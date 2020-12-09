@@ -35,6 +35,7 @@ object AccountManager {
 
     fun logout() {
         account = null
+        token = null
         config = null
         accountCode = null
     }

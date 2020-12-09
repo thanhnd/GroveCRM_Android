@@ -22,7 +22,6 @@ import com.quynhlamryan.crm.utils.AccountManager
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 class MainActivity : AppCompatActivity() {
     lateinit var mainActivityViewModel: MainActivityViewModel
     private lateinit var sectionAdapter: SectionedRecyclerViewAdapter

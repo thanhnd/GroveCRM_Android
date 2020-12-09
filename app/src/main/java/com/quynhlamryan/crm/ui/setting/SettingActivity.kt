@@ -1,6 +1,7 @@
 package com.quynhlamryan.crm.ui.setting
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.quynhlamryan.crm.LoginActivity
 import com.quynhlamryan.crm.R
+import com.quynhlamryan.crm.data.ApiClient
 import com.quynhlamryan.crm.data.model.Account
 import com.quynhlamryan.crm.ui.browser.BrowserActivity
 import com.quynhlamryan.crm.ui.profile.ProfileActivity
@@ -63,8 +65,9 @@ class SettingActivity : AppCompatActivity() {
 
         btnLogOut.setOnClickListener {
             AccountManager.logout()
+            ApiClient.lazyMgr.reset()
             val intent = Intent(applicationContext, LoginActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
         }
     }
