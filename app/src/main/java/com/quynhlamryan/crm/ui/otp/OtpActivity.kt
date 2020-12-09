@@ -150,9 +150,13 @@ class OtpActivity : AppCompatActivity() {
     private fun verifyPhoneNumberWithCode(verificationId: String?, code: String) {
         // [START verify_with_code]
         verificationId?.let {verificationId ->
-            val credential = PhoneAuthProvider.getCredential(verificationId, code)
-            // [END verify_with_code]
-            signInWithPhoneAuthCredential(credential)
+            try {
+                val credential = PhoneAuthProvider.getCredential(verificationId, code)
+                // [END verify_with_code]
+                signInWithPhoneAuthCredential(credential)
+            } catch (e: Exception) {
+                Logger.e(e)
+            }
         }
     }
 
