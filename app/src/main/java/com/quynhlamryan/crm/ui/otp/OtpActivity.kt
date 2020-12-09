@@ -154,7 +154,7 @@ class OtpActivity : AppCompatActivity() {
                 val credential = PhoneAuthProvider.getCredential(verificationId, code)
                 // [END verify_with_code]
                 signInWithPhoneAuthCredential(credential)
-            } catch (e: Exception) {
+            } catch (e: IllegalArgumentException) {
                 Logger.e(e)
             }
         }
