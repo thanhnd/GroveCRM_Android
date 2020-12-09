@@ -48,4 +48,5 @@
     <string name="error_name_too_long">"Name should not exceed 100 chacraters. "</string>
     <string name="error_email_too_long">Email should not be ecceed 100 characters.</string>
     <string name="error_email_invalid">Invalid email.</string>
+    <string name="promotion">Promotion</string>
 </resources>

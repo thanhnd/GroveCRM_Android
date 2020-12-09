@@ -11,9 +11,9 @@ import com.bumptech.glide.Glide
 import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.data.model.Account
 import com.quynhlamryan.crm.data.model.Article
+import com.quynhlamryan.crm.data.model.Promotion
 import com.quynhlamryan.crm.ui.browser.BrowserActivity
 import com.quynhlamryan.crm.ui.inputPhone.InputPhoneActivity
-import com.quynhlamryan.crm.ui.main.ArticleSection.ClickListener
 import com.quynhlamryan.crm.ui.mapstore.MapStoreActivity
 import com.quynhlamryan.crm.ui.membercard.MemberCardActivity
 import com.quynhlamryan.crm.ui.setting.SettingActivity
@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var mainActivityViewModel: MainActivityViewModel
     private lateinit var sectionAdapter: SectionedRecyclerViewAdapter
     private var articleSection: ArticleSection? = null
+    private var promotionSection: PromotionSection? = null
     private var accountSection: AccountSection? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,9 +52,25 @@ class MainActivity : AppCompatActivity() {
             })
         sectionAdapter.addSection(accountSection)
 
+        //Promotion section
+        promotionSection = PromotionSection(
+            resources.getString(R.string.promotion),
+            object : PromotionSection.ClickListener {
+                override fun onItemRootViewClicked(
+                    section: PromotionSection?,
+                    promotion: Promotion
+                ) {
+                    openBrowser(promotion)
+                }
+            })
+
+
+        sectionAdapter.addSection(promotionSection)
+
+        //Article section
         articleSection = ArticleSection(
             resources.getString(R.string.news),
-            object : ClickListener {
+            object : ArticleSection.ClickListener {
                 override fun onItemRootViewClicked(
                     section: ArticleSection?,
                     article: Article
@@ -94,19 +111,10 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        mainActivityViewModel.getAccount()?.observe(this, Observer { account ->
-            accountSection?.apply {
-                account?.let { account ->
-                    AccountManager.account = account
-                    setAccount(account)
-                    sectionAdapter.notifyDataSetChanged()
-
-                    Glide
-                        .with(this@MainActivity)
-                        .load(account.urlAvatar)
-                        .circleCrop()
-                        .into(ivAvatar)
-                }
+        mainActivityViewModel.getPromotions()?.observe(this, Observer { promotions ->
+            promotionSection?.apply {
+                setList(promotions)
+                sectionAdapter.notifyDataSetChanged()
             }
         })
 
@@ -169,6 +177,16 @@ class MainActivity : AppCompatActivity() {
                 putExtra(BrowserActivity.TITLE, article.title)
                 putExtra(BrowserActivity.URL, article.url)
                 putExtra(BrowserActivity.CONTENT, article.content)
+                startActivity(this)
+            }
+    }
+
+    private fun openBrowser(promotion: Promotion) {
+        Intent(this, BrowserActivity::class.java)
+            .apply {
+                putExtra(BrowserActivity.TITLE, promotion.title)
+                putExtra(BrowserActivity.URL, promotion.url)
+                putExtra(BrowserActivity.CONTENT, promotion.content)
                 startActivity(this)
             }
     }

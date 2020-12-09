@@ -23,7 +23,7 @@ interface ApiInterface {
     fun getListArticles(): Call<ResponseResult<List<Article>>>
 
     @GET("api/CRMNews/getlistpromotion/")
-    fun getListPromotions(): Call<ResponseResult<Account>>
+    fun getListPromotions(): Call<ResponseResult<List<Promotion>>>
 
     @GET("api/CRMStores/getliststore/")
     fun getListStores(): Call<ResponseResult<List<Store>>>

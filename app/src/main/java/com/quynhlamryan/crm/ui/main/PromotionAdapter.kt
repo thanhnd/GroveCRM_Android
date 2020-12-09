@@ -1,41 +1,35 @@
 package com.quynhlamryan.crm.ui.main
 
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.quynhlamryan.crm.R
-import com.quynhlamryan.crm.data.model.Article
+import com.quynhlamryan.crm.data.model.Promotion
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.item_article.*
+import kotlinx.android.synthetic.main.item_promotion.*
 
-class MainAdapter() :
-    RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class PromotionAdapter() :
+    RecyclerView.Adapter<PromotionAdapter.ViewHolder>() {
 
-    internal var articles: List<Article>? = null
+    var promotions: List<Promotion>? = null
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    var onItemClick: ((Article) -> Unit)? = null
+    var onItemClick: ((Promotion) -> Unit)? = null
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         @Suppress("DEPRECATION")
-        fun bind(article: Article) {
-            tvArticleTitle.text = article.title
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                tvArticleDescription.text = Html.fromHtml(article.content, Html.FROM_HTML_MODE_LEGACY)
-            } else {
-                tvArticleDescription.text = Html.fromHtml(article.content)
-            }
+        fun bind(promotion: Promotion) {
+            
             Glide
                 .with(containerView.context)
-                .load(article.imageUrl)
+                .load(promotion.imageUrl)
                 .centerCrop()
-                .into(ivArticleImage);
+                .into(ivImage);
         }
     }
 
@@ -43,7 +37,7 @@ class MainAdapter() :
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_article, viewGroup, false)
+            .inflate(R.layout.item_promotion, viewGroup, false)
 
         return ViewHolder(view)
     }
@@ -53,16 +47,16 @@ class MainAdapter() :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        articles?.get(position)?.also { article ->
-            viewHolder.bind(article)
+        promotions?.get(position)?.also { promotion ->
+            viewHolder.bind(promotion)
             viewHolder.itemView.setOnClickListener {
-                onItemClick?.invoke(article)
+                onItemClick?.invoke(promotion)
             }
         }
 
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = articles?.size ?: 0
+    override fun getItemCount() = promotions?.size ?: 0
 
 }

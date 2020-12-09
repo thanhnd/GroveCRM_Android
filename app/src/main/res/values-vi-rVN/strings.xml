@@ -26,6 +26,7 @@
     <string name="setting">Cài Đặt</string>
     <string name="score">%s điểm</string>
     <string name="fullname">Họ Tên</string>
+    <string name="promotion">Khuyến Mãi</string>
 
 
 </resources>
