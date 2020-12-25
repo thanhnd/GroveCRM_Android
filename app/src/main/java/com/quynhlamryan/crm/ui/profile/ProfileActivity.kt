@@ -3,27 +3,35 @@ package com.quynhlamryan.crm.ui.profile
 import android.Manifest
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Patterns
+import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.quynhlamryan.crm.BuildConfig
 import com.quynhlamryan.crm.Constants
 import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.utils.AccountManager
 import com.quynhlamryan.crm.utils.Logger
 import kotlinx.android.synthetic.main.activity_profile.*
+import java.io.File
 import java.io.FileNotFoundException
+import java.io.IOException
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -36,6 +44,7 @@ class ProfileActivity : AppCompatActivity() {
     private var name: String? = null
     private var birthday: String? = null
     private var email: String? = null
+    private var currentPhotoPath: String? = null
 
     var requestImageLauncher = registerForActivityResult(
         StartActivityForResult()
@@ -44,29 +53,43 @@ class ProfileActivity : AppCompatActivity() {
             // There are no request code
             val data = result.data
             data?.data?.let { selectedImage ->
-                val filePath = getPath(selectedImage)
-                val file_extn = filePath.substring(filePath.lastIndexOf(".") + 1)
-                Logger.d(filePath)
-                try {
-                    if (file_extn == "img" || file_extn == "jpg" || file_extn == "jpeg" || file_extn == "gif" || file_extn == "png") {
-                        profileViewModel.uploadAvatar(filePath)
-                            ?.observe(this, Observer { isSuccess ->
-                                if (isSuccess) {
-                                    finish()
-                                }
-                            })
-                    } else {
-                        //NOT IN REQUIRED FORMAT
-                    }
-                } catch (e: FileNotFoundException) {
-                    // TODO Auto-generated catch block
-                    Logger.e(e)
-                }
+                uploadImage(getPath(selectedImage))
             }
         }
     }
 
-    private val requestPermissionLauncher =
+    private var requestCameraLauncher = registerForActivityResult(
+        StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+
+            currentPhotoPath?.let { selectedImage ->
+
+                Logger.d(selectedImage)
+                uploadImage(selectedImage)
+            }
+        }
+    }
+
+    private fun uploadImage(filePath: String) {
+        try {
+            val fileExt = filePath.substring(filePath.lastIndexOf(".") + 1)
+            if (fileExt == "img" || fileExt == "jpg" || fileExt == "jpeg" || fileExt == "gif" || fileExt == "png") {
+                profileViewModel.uploadAvatar(filePath)
+                    ?.observe(this, Observer { isSuccess ->
+                        if (isSuccess) {
+                            showAvatar(filePath)
+                        }
+                    })
+            } else {
+                //NOT IN REQUIRED FORMAT
+            }
+        } catch (e: FileNotFoundException) {
+            Logger.e(e)
+        }
+    }
+
+    private val requestAccessImagePermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
@@ -78,6 +101,15 @@ class ProfileActivity : AppCompatActivity() {
                 // same time, respect the user's decision. Don't link to system
                 // settings in an effort to convince the user to change their
                 // decision.
+            }
+        }
+
+    private val requestCameraPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            permissions.entries.forEach {
+                Logger.e("${it.key} = ${it.value}")
             }
         }
 
@@ -115,23 +147,28 @@ class ProfileActivity : AppCompatActivity() {
         edtBirthday.setOnClickListener {
             showDatePicker()
         }
+
         ivAvatar.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= 23) {
-                val permissionCheck = ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                )
-                if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-                    requestPermissionLauncher.launch(
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    return@setOnClickListener
+            showChooseImageDialog()
+        }
+
+        AccountManager.account?.apply {
+            showAvatar(urlAvatar)
+            edtFullName.setText(fullName)
+            edtBirthday.setText(dob)
+            edtPhone.setText(phoneNumber)
+            edtEmail.setText(email)
+
+            if (!birthday.isNullOrEmpty()) {
+                val format = SimpleDateFormat(Constants.dateFormat)
+                try {
+                    dateOfBirth = format.parse(birthday!!)
+                } catch (e: ParseException) {
+                    Logger.e(e)
                 }
             }
-
-            chooseImage()
         }
     }
-
 
     private fun getPath(uri: Uri): String {
         var res: String? = null
@@ -155,6 +192,38 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
+    private fun openCamera() {
+        try {
+            val takePictureIntent =
+                Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+                    // Ensure that there's a camera activity to handle the intent
+                    takePictureIntent.resolveActivity(packageManager)?.also {
+                        // Create the File where the photo should go
+                        val photoFile: File? = try {
+                            createImageFile()
+                        } catch (ex: IOException) {
+                            // Error occurred while creating the File
+                            Logger.e(ex)
+                            null
+                        }
+                        // Continue only if the File was successfully created
+                        photoFile?.also {
+                            val photoURI: Uri = FileProvider.getUriForFile(
+                                this,
+                                BuildConfig.APPLICATION_ID ,
+                                it
+                            )
+                            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                            requestCameraLauncher.launch(takePictureIntent)
+                        }
+                    }
+                }
+
+        } catch (e: ActivityNotFoundException) {
+            // display error state to the user
+        }
+    }
+
     private fun showDatePicker() {
         val calendar = Calendar.getInstance()
         dateOfBirth.let {
@@ -164,7 +233,6 @@ class ProfileActivity : AppCompatActivity() {
         val mYear = calendar[Calendar.YEAR]
         val mMonth = calendar[Calendar.MONTH]
         val mDay = calendar[Calendar.DAY_OF_MONTH]
-
 
         val datePickerDialog = DatePickerDialog(
             this,
@@ -224,33 +292,19 @@ class ProfileActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        AccountManager.account?.apply {
-            Glide
-                .with(this@ProfileActivity)
-                .load(urlAvatar)
-                .circleCrop()
-                .into(ivAvatar)
-            edtFullName.setText(fullName)
-            edtBirthday.setText(dob)
-            edtPhone.setText(phoneNumber)
-            edtEmail.setText(email)
 
-            if (!birthday.isNullOrEmpty())  {
-                val format = SimpleDateFormat(Constants.dateFormat)
-                try {
-                    dateOfBirth = format.parse(birthday!!)
-                } catch (e: ParseException) {
-                    Logger.e(e)
-                }
-            }
-        }
+    }
+
+    private fun showAvatar(urlAvatar: String?) {
+        Glide
+            .with(this@ProfileActivity)
+            .load(urlAvatar)
+            .circleCrop()
+            .into(ivAvatar)
     }
 
     private val myDateListener =
-        OnDateSetListener { view, year, month, date -> // TODO Auto-generated method stub
-            // year = year
-            // month = month
-            // date = day
+        OnDateSetListener { view, year, month, date ->
             showDate(year, month, date)
         }
 
@@ -264,8 +318,81 @@ class ProfileActivity : AppCompatActivity() {
         edtBirthday.setText(sdf.format(calendar.time))
     }
 
-    companion object {
-        const val REQUEST_PERMISSION_EXTERNAL_STORAGE = 1
+    private fun onSelectChooseImage() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val permissionCheck = ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                requestAccessImagePermissionLauncher.launch(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                )
+                return
+            }
+        }
+
+        chooseImage()
     }
 
+    private fun onSelectCamera() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_DENIED ||
+                checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                == PackageManager.PERMISSION_DENIED
+            ) {
+                //permission was not enabled
+                val permission =
+                    arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                //show popup to request permission
+                requestCameraPermissionLauncher.launch(permission)
+                return
+            }
+
+        }
+        openCamera()
+    }
+
+    private fun showChooseImageDialog() {
+        /**
+         * a selector dialog to display two image source options, from camera
+         * ‘Take from camera’ and from existing files ‘Select from gallery’
+         */
+        val items = arrayOf(
+            getString(R.string.take_from_camera),
+            getString(R.string.select_from_gallery)
+        )
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
+            this,
+            android.R.layout.select_dialog_item, items
+        )
+        val builder = AlertDialog.Builder(this)
+        builder.setAdapter(adapter) { dialog, item ->
+            // pick from
+            // camera
+            if (item == 0) {
+                onSelectCamera()
+            } else {
+                onSelectChooseImage()
+            }
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        // Create an image file name
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "JPEG_${timeStamp}_", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            currentPhotoPath = absolutePath
+        }
+    }
 }
