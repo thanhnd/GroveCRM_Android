@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseException
@@ -15,14 +16,13 @@ import com.quynhlamryan.crm.Constants
 import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.data.ApiClient.lazyMgr
 import com.quynhlamryan.crm.ui.main.MainActivity
+import com.quynhlamryan.crm.ui.policy.PolicyActivity
 import com.quynhlamryan.crm.utils.AccountManager
 import com.quynhlamryan.crm.utils.Logger
 import kotlinx.android.synthetic.main.activity_otp.*
 import java.util.concurrent.TimeUnit
 
 class OtpActivity : AppCompatActivity() {
-
-
     private lateinit var otpViewModel: OtpViewModel
     private lateinit var auth: FirebaseAuth
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
@@ -37,8 +37,6 @@ class OtpActivity : AppCompatActivity() {
             .get(OtpViewModel::class.java)
 
         btnNext.setOnClickListener {
-//            openMainActivity()
-
             val code = edtOtp.text.toString()
             if (TextUtils.isEmpty(code)) {
                 edtOtp.error = "Cannot be empty."
@@ -129,6 +127,13 @@ class OtpActivity : AppCompatActivity() {
 
     private fun openMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+        finish()
+    }
+    private fun openPolicyActivity() {
+        val intent = Intent(this, PolicyActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
         finish()
     }
@@ -176,9 +181,15 @@ class OtpActivity : AppCompatActivity() {
                             val token = it ?: return@observe
                             AccountManager.token = token
                             lazyMgr.reset()
-                            openMainActivity()
-
-                            finish()
+                            otpViewModel.getAccount()?.observe(this, Observer { it ->
+                                val account = it ?: return@Observer
+                                AccountManager.account = account
+                                if (!account.isNew) {
+                                    openMainActivity()
+                                } else {
+                                    openPolicyActivity()
+                                }
+                            })
                         })
                     }
 

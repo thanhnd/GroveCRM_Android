@@ -12,7 +12,7 @@ class Account {
     var urlAvatar: String? = null
     var typeMember: String? = null
     var total: String? = null
-    var isNew: Boolean? = null
+    var isNew: Boolean = false
     var roles: List<String>? = null
 }
 

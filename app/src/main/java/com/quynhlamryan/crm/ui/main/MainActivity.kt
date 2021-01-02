@@ -117,13 +117,19 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        mainActivityViewModel.getAccount()?.observe(this, Observer { account ->
-            accountSection?.apply {
-                account?.let { account ->
-                    bindAccount(account)
-                }
+        AccountManager.account?.apply {
+            bindAccount(this)
+        } ?: run {
+            AccountManager.token?.let {
+                mainActivityViewModel.getAccount()?.observe(this, Observer { account ->
+                    accountSection?.apply {
+                        account?.let { account ->
+                            bindAccount(account)
+                        }
+                    }
+                })
             }
-        })
+        }
     }
 
     override fun onResume() {

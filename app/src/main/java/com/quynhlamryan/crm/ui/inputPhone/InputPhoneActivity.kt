@@ -53,7 +53,6 @@ class InputPhoneActivity : AppCompatActivity() {
             val accountCode = it ?: return@observe
             AccountManager.accountCode = accountCode
             AccountManager.phone = phoneNumber
-
             val intent = Intent(this, OtpActivity::class.java)
             startActivity(intent)
 

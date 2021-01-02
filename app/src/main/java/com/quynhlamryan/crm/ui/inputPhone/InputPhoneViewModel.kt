@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModel
 import com.quynhlamryan.crm.data.InputPhoneRepository
 
 class InputPhoneViewModel : ViewModel() {
-    var ldOtp: MutableLiveData<String>? = null
 
     fun getOtp(phoneNumber: String) : LiveData<String>? {
-        ldOtp = InputPhoneRepository.getOtp(phoneNumber)
+        val ldOtp: MutableLiveData<String> = MutableLiveData()
+        InputPhoneRepository.getOtp(phoneNumber) {
+                ldOtp.value = it
+        }
+
         return ldOtp
     }
 

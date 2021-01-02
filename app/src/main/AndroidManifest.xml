@@ -53,6 +53,7 @@
         <activity android:name=".ui.setting.SettingActivity" />
         <activity android:name=".ui.profile.ProfileActivity"
             android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".ui.policy.PolicyActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

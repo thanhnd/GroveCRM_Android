@@ -17,9 +17,12 @@ class SettingViewModel : ViewModel() {
         return this.ldConfig
     }
 
-    var ldAccount: MutableLiveData<Account>? = null
-    fun getAccount() : LiveData<Account>? {
-        this.ldAccount = ProfileRepository.getAccount()
-        return this.ldAccount
+    fun getAccount(): LiveData<Account>? {
+        val ldAccount = MutableLiveData<Account>()
+        ProfileRepository.getAccount {
+            ldAccount.value = it
+        }
+
+        return ldAccount
     }
 }

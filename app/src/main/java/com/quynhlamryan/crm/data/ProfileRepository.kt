@@ -1,6 +1,7 @@
 package com.quynhlamryan.crm.data
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.quynhlamryan.crm.data.model.Account
 import com.quynhlamryan.crm.data.model.ResponseResult
@@ -12,14 +13,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 object ProfileRepository {
-    val ldResult = MutableLiveData<Boolean>()
-    val ldAccount = MutableLiveData<Account>()
 
     fun updateProfile(request: AccountRequest): MutableLiveData<Boolean> {
 
         val call = ApiClient.apiInterface.updateUserProfile(request)
 
-        call.enqueue(object: Callback<ResponseResult<Boolean>> {
+        val ldResult = MutableLiveData<Boolean>()
+        call.enqueue(object : Callback<ResponseResult<Boolean>> {
             override fun onFailure(call: Call<ResponseResult<Boolean>>, t: Throwable) {
                 Log.v("DEBUG : ", t.message.toString())
             }
@@ -38,8 +38,8 @@ object ProfileRepository {
     fun uploadAvatar(request: MultipartBody.Part): MutableLiveData<Boolean> {
 
         val call = ApiClient.apiInterface.uploadAvatar(request)
-
-        call.enqueue(object: Callback<ResponseResult<Boolean>> {
+        val ldResult = MutableLiveData<Boolean>()
+        call.enqueue(object : Callback<ResponseResult<Boolean>> {
             override fun onFailure(call: Call<ResponseResult<Boolean>>, t: Throwable) {
                 Log.v("DEBUG : ", t.message.toString())
             }
@@ -55,11 +55,11 @@ object ProfileRepository {
         return ldResult
     }
 
-    fun getAccount(): MutableLiveData<Account> {
+    fun getAccount(updateResults: (Account) -> Unit): LiveData<Account> {
 
         val call = ApiClient.apiInterface.getUserInfo()
-
-        call.enqueue(object: Callback<ResponseResult<Account>> {
+        val ldAccount = MutableLiveData<Account>()
+        call.enqueue(object : Callback<ResponseResult<Account>> {
             override fun onFailure(call: Call<ResponseResult<Account>>, t: Throwable) {
                 Logger.d(t.message.toString())
             }
@@ -69,7 +69,7 @@ object ProfileRepository {
                 response: Response<ResponseResult<Account>>
             ) {
                 Logger.d(response.body().toString())
-                ldAccount.value = response.body()?.resultObj
+                response.body()?.resultObj?.let(updateResults)
             }
         })
 

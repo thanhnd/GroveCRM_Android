@@ -30,7 +30,7 @@ object AccountManager {
             } else {
                 sharedPref?.edit()?.putString(Constants.accountTokenKey, value)?.apply()
             }
-
+            field = value
         }
 
     fun logout() {

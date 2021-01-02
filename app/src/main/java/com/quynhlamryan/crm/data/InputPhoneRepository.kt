@@ -14,13 +14,11 @@ import retrofit2.Response
 
 object InputPhoneRepository {
 
-    val ldOtp = MutableLiveData<String>()
-
-    fun getOtp(phoneNumber: String): MutableLiveData<String> {
+    fun getOtp(phoneNumber: String, updateResults: (String) -> Unit) {
 
         val call = ApiClient.apiInterface.getOtp(phoneNumber)
-
-        call.enqueue(object: Callback<ResponseResult<String>> {
+        val ldOtp = MutableLiveData<String>()
+        call.enqueue(object : Callback<ResponseResult<String>> {
             override fun onFailure(call: Call<ResponseResult<String>>, t: Throwable) {
                 Log.v("DEBUG : ", t.message.toString())
             }
@@ -30,10 +28,9 @@ object InputPhoneRepository {
                 response: Response<ResponseResult<String>>
             ) {
                 Log.v("DEBUG : ", response.body().toString())
-                ldOtp.value = response.body()?.resultObj
+                response.body()?.resultObj?.let(updateResults)
+
             }
         })
-
-        return ldOtp
     }
 }
