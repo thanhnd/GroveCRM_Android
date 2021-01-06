@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.ui.otp.OtpActivity
 import com.quynhlamryan.crm.utils.AccountManager
+import com.quynhlamryan.crm.utils.CustomProgressDialog
+import com.quynhlamryan.crm.utils.showAlertDialog
 import kotlinx.android.synthetic.main.activity_input_phone.*
 
 class InputPhoneActivity : AppCompatActivity() {
@@ -49,8 +51,13 @@ class InputPhoneActivity : AppCompatActivity() {
     }
 
     private fun getOtp(phoneNumber: String) {
+        CustomProgressDialog.showProgressDialog(this)
         inputPhoneViewModel.getOtp(phoneNumber)?.observe(this, {
-            val accountCode = it ?: return@observe
+            CustomProgressDialog.dismissProgressDialog()
+            val accountCode = it ?: run {
+                showAlertDialog()
+                return@observe
+            }
             AccountManager.accountCode = accountCode
             AccountManager.phone = phoneNumber
             val intent = Intent(this, OtpActivity::class.java)

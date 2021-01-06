@@ -18,6 +18,7 @@ import com.quynhlamryan.crm.data.ApiClient.lazyMgr
 import com.quynhlamryan.crm.ui.main.MainActivity
 import com.quynhlamryan.crm.ui.policy.PolicyActivity
 import com.quynhlamryan.crm.utils.AccountManager
+import com.quynhlamryan.crm.utils.CustomProgressDialog
 import com.quynhlamryan.crm.utils.Logger
 import kotlinx.android.synthetic.main.activity_otp.*
 import java.util.concurrent.TimeUnit
@@ -42,7 +43,11 @@ class OtpActivity : AppCompatActivity() {
                 edtOtp.error = "Cannot be empty."
                 return@setOnClickListener
             }
-
+            if (storedVerificationId.isNullOrEmpty()) {
+                val phoneWithCode = "${Constants.phoneCountryCode}${AccountManager.phone}"
+                startPhoneNumberVerification(phoneWithCode)
+                return@setOnClickListener
+            }
             verifyPhoneNumberWithCode(storedVerificationId, code)
 
         }
@@ -177,7 +182,9 @@ class OtpActivity : AppCompatActivity() {
                     updateUI(STATE_SIGNIN_SUCCESS, user)
 
                     user?.uid?.let { userUID ->
+                        CustomProgressDialog.showProgressDialog(this)
                         otpViewModel.verifyOtp(userUID)?.observe(this, {
+                            CustomProgressDialog.dismissProgressDialog()
                             val token = it ?: return@observe
                             AccountManager.token = token
                             lazyMgr.reset()

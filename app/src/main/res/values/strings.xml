@@ -8,19 +8,12 @@
     <string name="action_next">Continue</string>
     <string name="action_skip">Skip</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_opt">Input OTP</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="click_continue_to_receive_otp">Click continue to verify your phone number. We will send SMS to verify.</string>
     <string name="news">News</string>
     <string name="member_card">Member Card</string>
@@ -53,4 +46,7 @@
     <string name="take_from_camera">Take from camera</string>
     <string name="select_from_gallery">Select from gallery</string>
     <string name="action_agree">Agree</string>
+    <string name="dialog_alert_error_title">Error</string>
+    <string name="dialog_alert_error_message">An error occurs. Please try again later.</string>
+    <string name="please_wait">Please wait...</string>
 </resources>

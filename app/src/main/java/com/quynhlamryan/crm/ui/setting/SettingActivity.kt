@@ -15,6 +15,7 @@ import com.quynhlamryan.crm.ui.browser.BrowserActivity
 import com.quynhlamryan.crm.ui.profile.ProfileActivity
 import com.quynhlamryan.crm.ui.transaction.TransactionActivity
 import com.quynhlamryan.crm.utils.AccountManager
+import com.quynhlamryan.crm.utils.CustomProgressDialog
 import kotlinx.android.synthetic.main.activity_setting.*
 
 class SettingActivity : AppCompatActivity() {
@@ -86,7 +87,9 @@ class SettingActivity : AppCompatActivity() {
             bindAccount(account)
         }
 
+        CustomProgressDialog.showProgressDialog(this)
         settingViewModel.getListTransactions()?.observe(this, Observer { config ->
+            CustomProgressDialog.dismissProgressDialog()
             AccountManager.config = config
             tvHotLine.text = getString(R.string.hot_line, (config.hotline ?: ""))
         })

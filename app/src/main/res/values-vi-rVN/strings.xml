@@ -29,7 +29,23 @@
     <string name="promotion">Khuyến Mãi</string>
     <string name="take_from_camera">Chụp hình</string>
     <string name="select_from_gallery">Thư viện hình</string>
-    <string name="action_agree">Agree</string>
-
+    <string name="action_agree">Đồng ý</string>
+    <string name="birthday">Ngày Sinh</string>
+    <string name="action_sign_in_short">Đăng Nhập</string>
+    <string name="login_failed">Không thể đăng nhập</string>
+    <string name="phone_number">Số Điện Thoại</string>
+    <string name="email">Email</string>
+    <string name="action_done">Đồng ý</string>
+    <string name="prompt_full_name">Nhập họ và tên</string>
+    <string name="prompt_birthday">Nhập ngày sinh</string>
+    <string name="error_empty_name">Vui lòng nhập tên của bạn.</string>
+    <string name="error_empty_email">Vui lòng nhập địa chỉ email.</string>
+    <string name="error_empty_birthday">Vui lòng nhập ngày sinh</string>
+    <string name="error_name_too_long">Tên không được dài quá 100 ký tự.</string>
+    <string name="error_email_too_long">Email không được dài quá 100 ký tự.</string>
+    <string name="error_email_invalid">Địa chỉ email không hợp lệ.</string>
+    <string name="dialog_alert_error_title">Lỗi</string>
+    <string name="dialog_alert_error_message">Có lỗi xảy ra. Vui lòng thử lại sau.</string>
+    <string name="please_wait">Đang tải...</string>
 
 </resources>

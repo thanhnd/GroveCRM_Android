@@ -26,7 +26,10 @@ import com.bumptech.glide.Glide
 import com.quynhlamryan.crm.BuildConfig
 import com.quynhlamryan.crm.Constants
 import com.quynhlamryan.crm.R
+import com.quynhlamryan.crm.ui.main.MainActivity
+import com.quynhlamryan.crm.ui.policy.PolicyActivity
 import com.quynhlamryan.crm.utils.AccountManager
+import com.quynhlamryan.crm.utils.CustomProgressDialog
 import com.quynhlamryan.crm.utils.Logger
 import kotlinx.android.synthetic.main.activity_profile.*
 import java.io.File
@@ -39,12 +42,16 @@ import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
 
+    companion object {
+        const val CALLING_ACTIVITY = "calling_activity"
+    }
     private var dateOfBirth: Date? = null
     lateinit var profileViewModel: ProfileViewModel
     private var name: String? = null
     private var birthday: String? = null
     private var email: String? = null
     private var currentPhotoPath: String? = null
+    private var parentActivity: String? = null
 
     var requestImageLauncher = registerForActivityResult(
         StartActivityForResult()
@@ -73,10 +80,13 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun uploadImage(filePath: String) {
         try {
+
             val fileExt = filePath.substring(filePath.lastIndexOf(".") + 1)
             if (fileExt == "img" || fileExt == "jpg" || fileExt == "jpeg" || fileExt == "gif" || fileExt == "png") {
+                CustomProgressDialog.showProgressDialog(this)
                 profileViewModel.uploadAvatar(filePath)
                     ?.observe(this, Observer { isSuccess ->
+                        CustomProgressDialog.dismissProgressDialog()
                         if (isSuccess) {
                             showAvatar(filePath)
                         }
@@ -118,15 +128,22 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
         setTitle(R.string.profile_info)
 
+        parentActivity = intent.getStringExtra(CALLING_ACTIVITY)
+
         profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         btnDone.setOnClickListener {
             if (!isValidInput()) {
                 return@setOnClickListener
             }
+            CustomProgressDialog.showProgressDialog(this)
             profileViewModel.updateAccount(name, birthday, email)
                 ?.observe(this, Observer { isSuccess ->
+                    CustomProgressDialog.dismissProgressDialog()
                     if (isSuccess) {
+                        if (parentActivity == PolicyActivity::class.java.simpleName) {
+                            openMainActivity()
+                        }
                         finish()
                     }
                 })
@@ -168,6 +185,12 @@ class ProfileActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun openMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
     }
 
     private fun getPath(uri: Uri): String {
