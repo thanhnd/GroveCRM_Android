@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.data.model.Store
+import com.quynhlamryan.crm.utils.CustomProgressDialog
 import kotlinx.android.synthetic.main.activity_map_store.*
 
 class MapStoreActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -42,7 +43,9 @@ class MapStoreActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onStart() {
         super.onStart()
 
+        CustomProgressDialog.showProgressDialog(this)
         mapStoreStoreViewMdodel.getStores()?.observe(this, Observer { stores ->
+            CustomProgressDialog.dismissProgressDialog()
             adapter.stores = stores
 
             this.stores = stores

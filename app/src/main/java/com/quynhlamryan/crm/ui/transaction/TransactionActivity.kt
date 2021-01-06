@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.quynhlamryan.crm.R
+import com.quynhlamryan.crm.utils.CustomProgressDialog
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_transaction.*
 
@@ -29,7 +30,10 @@ class TransactionActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
+        CustomProgressDialog.showProgressDialog(this)
         transactionViewModel.getListTransactions()?.observe(this, Observer { transaction ->
+            CustomProgressDialog.dismissProgressDialog()
+
             transactionSection.transaction = transaction
             sectionAdapter.notifyDataSetChanged()
             tvEmpty.visibility = View.GONE
