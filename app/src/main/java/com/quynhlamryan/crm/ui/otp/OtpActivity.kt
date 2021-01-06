@@ -57,6 +57,7 @@ class OtpActivity : AppCompatActivity() {
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                CustomProgressDialog.dismissProgressDialog()
                 // This callback will be invoked in two situations:
                 // 1 - Instant verification. In some cases the phone number can be instantly
                 //     verified without needing to send or enter a verification code.
@@ -76,6 +77,7 @@ class OtpActivity : AppCompatActivity() {
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
+                CustomProgressDialog.dismissProgressDialog()
                 // This callback is invoked in an invalid request for verification is made,
                 // for instance if the the phone number format is not valid.
                 Logger.w("onVerificationFailed", e)
@@ -106,6 +108,7 @@ class OtpActivity : AppCompatActivity() {
                 verificationId: String,
                 token: PhoneAuthProvider.ForceResendingToken
             ) {
+                CustomProgressDialog.dismissProgressDialog()
                 // The SMS verification code has been sent to the provided phone number, we
                 // now need to ask the user to enter the code and then construct a credential
                 // by combining the code with a verification ID.
@@ -151,6 +154,7 @@ class OtpActivity : AppCompatActivity() {
             .setActivity(this)                 // Activity (for callback binding)
             .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
             .build()
+        CustomProgressDialog.showProgressDialog(this)
         PhoneAuthProvider.verifyPhoneNumber(options)
         // [END start_phone_auth]
 
@@ -165,14 +169,17 @@ class OtpActivity : AppCompatActivity() {
                 // [END verify_with_code]
                 signInWithPhoneAuthCredential(credential)
             } catch (e: IllegalArgumentException) {
+                CustomProgressDialog.dismissProgressDialog()
                 Logger.e(e)
             }
         }
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        CustomProgressDialog.showProgressDialog(this)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
+                CustomProgressDialog.dismissProgressDialog()
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Logger.d("signInWithCredential:success")
