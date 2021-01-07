@@ -14,6 +14,8 @@ class BrowserActivity : AppCompatActivity() {
         val url = intent.getStringExtra(URL)
         val content = intent.getStringExtra(CONTENT)
         this.title = title
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         BrowserFragment.newInstance(url, content)?.let {fragment ->
             supportFragmentManager.beginTransaction().apply {
@@ -21,6 +23,11 @@ class BrowserActivity : AppCompatActivity() {
                 commitAllowingStateLoss()
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     companion object {

@@ -26,6 +26,9 @@ class SettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting)
         setTitle(R.string.setting)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
         settingViewModel = ViewModelProvider(this).get(SettingViewModel::class.java)
 
         cvTransaction.setOnClickListener {
@@ -103,6 +106,11 @@ class SettingActivity : AppCompatActivity() {
                 bindAccount(it)
             }
         })
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun bindAccount(account: Account) {

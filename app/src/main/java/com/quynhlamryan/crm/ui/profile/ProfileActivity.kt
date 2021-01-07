@@ -129,6 +129,10 @@ class ProfileActivity : AppCompatActivity() {
         setTitle(R.string.profile_info)
 
         parentActivity = intent.getStringExtra(CALLING_ACTIVITY)
+        if (parentActivity == PolicyActivity::class.java.simpleName) {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowHomeEnabled(true)
+        }
 
         profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
@@ -185,6 +189,11 @@ class ProfileActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun openMainActivity() {

@@ -12,11 +12,19 @@ class MemberCardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_member_card)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
         AccountManager.account?.let {account ->
             Glide
                 .with(this)
                 .load(account.urlBarcode)
             .into(ivCode)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

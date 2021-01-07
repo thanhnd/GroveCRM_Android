@@ -31,7 +31,8 @@ class MapStoreActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
         mapFragment?.getMapAsync(this)
 
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         adapter.onItemClick = { store ->
             map?.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(store.latitude, store.longitude), 17.0f))

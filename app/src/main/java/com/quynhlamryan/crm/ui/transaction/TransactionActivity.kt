@@ -19,6 +19,8 @@ class TransactionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transaction)
         setTitle(R.string.transaction_history)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
         sectionAdapter = SectionedRecyclerViewAdapter()
@@ -39,5 +41,10 @@ class TransactionActivity : AppCompatActivity() {
             tvEmpty.visibility = View.GONE
             rvTransaction.visibility = View.VISIBLE
         })
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
