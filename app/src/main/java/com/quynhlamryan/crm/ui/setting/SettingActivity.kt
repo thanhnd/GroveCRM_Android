@@ -2,7 +2,10 @@ package com.quynhlamryan.crm.ui.setting
 
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
+import android.text.Spanned
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,7 +19,9 @@ import com.quynhlamryan.crm.ui.profile.ProfileActivity
 import com.quynhlamryan.crm.ui.transaction.TransactionActivity
 import com.quynhlamryan.crm.utils.AccountManager
 import com.quynhlamryan.crm.utils.CustomProgressDialog
+import com.quynhlamryan.crm.utils.showAlertDialog
 import kotlinx.android.synthetic.main.activity_setting.*
+
 
 class SettingActivity : AppCompatActivity() {
     lateinit var settingViewModel: SettingViewModel
@@ -73,6 +78,24 @@ class SettingActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+        }
+
+        tvContactUs.setOnClickListener {
+            AccountManager.config?.support?.let {
+                showAlertDialog(
+                    title = getString(R.string.contact_us),
+                    message = fromHtml(it)
+                )
+            }
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    fun fromHtml(source: String?): Spanned? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY)
+        } else {
+            Html.fromHtml(source)
         }
     }
 
