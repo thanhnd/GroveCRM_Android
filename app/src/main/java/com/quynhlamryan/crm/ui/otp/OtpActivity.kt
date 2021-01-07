@@ -43,11 +43,11 @@ class OtpActivity : AppCompatActivity() {
                 edtOtp.error = "Cannot be empty."
                 return@setOnClickListener
             }
-            if (storedVerificationId.isNullOrEmpty()) {
-                val phoneWithCode = "${Constants.phoneCountryCode}${AccountManager.phone}"
-                startPhoneNumberVerification(phoneWithCode)
-                return@setOnClickListener
-            }
+//            if (storedVerificationId.isNullOrEmpty()) {
+//                val phoneWithCode = "${Constants.phoneCountryCode}${AccountManager.phone}"
+//                startPhoneNumberVerification(phoneWithCode)
+//                return@setOnClickListener
+//            }
             verifyPhoneNumberWithCode(storedVerificationId, code)
 
         }

@@ -15,9 +15,9 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Handler().postDelayed(Runnable { // This method will be executed once the timer is over
             // Start your app main activity
-            val intent = if (AccountManager.account?.isNew == false) {
+            val intent = AccountManager.token?.let {
                 Intent(this, MainActivity::class.java)
-            } else {
+            } ?: run {
                 Intent(this, LoginActivity::class.java)
             }
 
