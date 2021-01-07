@@ -7,7 +7,10 @@ import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.utils.AccountManager
 import kotlinx.android.synthetic.main.activity_member_card.*
 
+
 class MemberCardActivity : AppCompatActivity() {
+    var screenBrightness: Float? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_member_card)
@@ -15,16 +18,32 @@ class MemberCardActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        AccountManager.account?.let {account ->
+        AccountManager.account?.let { account ->
             Glide
                 .with(this)
                 .load(account.urlBarcode)
             .into(ivCode)
         }
+
+        val lp = window.attributes
+        screenBrightness = lp.screenBrightness
+        lp.screenBrightness = 255F
+        window.attributes = lp
     }
+
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onDestroy() {
+        screenBrightness?.let {
+            val lp = window.attributes
+            lp.screenBrightness = it
+            window.attributes = lp
+        }
+
+        super.onDestroy()
     }
 }
