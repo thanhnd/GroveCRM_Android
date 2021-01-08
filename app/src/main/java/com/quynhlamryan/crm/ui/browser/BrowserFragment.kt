@@ -1,5 +1,6 @@
 package com.quynhlamryan.crm.ui.browser
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,9 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.quynhlamryan.crm.R
+import com.quynhlamryan.crm.utils.CustomProgressDialog
 import kotlinx.android.synthetic.main.fragment_browser.*
+
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -41,7 +44,17 @@ class BrowserFragment : Fragment() {
                 view?.loadUrl(url)
                 return true
             }
+            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                CustomProgressDialog.showProgressDialog(context)
+                super.onPageStarted(view, url, favicon)
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                CustomProgressDialog.dismissProgressDialog()
+                super.onPageFinished(view, url)
+            }
         }
+
         if (!url.isNullOrEmpty()) {
             webView.loadUrl(url)
         } else if (!content.isNullOrEmpty()) {
