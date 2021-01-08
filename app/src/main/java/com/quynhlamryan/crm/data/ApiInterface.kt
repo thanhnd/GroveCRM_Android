@@ -2,6 +2,7 @@ package com.quynhlamryan.crm.data
 
 import com.quynhlamryan.crm.data.model.*
 import com.quynhlamryan.crm.data.request.AccountRequest
+import com.quynhlamryan.crm.data.request.FcmTokenRequest
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -40,7 +41,7 @@ interface ApiInterface {
 
     // Todo
     @POST("api/CRMCFMTokens/addfcmtoken/")
-    fun addFcmToken(): Call<ResponseResult<Account>>
+    fun addFcmToken(@Body request: FcmTokenRequest): Call<ResponseResult<Boolean>>
 
     @GET("api/Users/getlistmymessage/")
     fun getInbox(): Call<ResponseResult<Notify>>

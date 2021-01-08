@@ -15,6 +15,8 @@ import com.google.firebase.ktx.Firebase
 import com.quynhlamryan.crm.Constants
 import com.quynhlamryan.crm.R
 import com.quynhlamryan.crm.data.ApiClient.lazyMgr
+import com.quynhlamryan.crm.data.ProfileRepository
+import com.quynhlamryan.crm.data.request.FcmTokenRequest
 import com.quynhlamryan.crm.ui.main.MainActivity
 import com.quynhlamryan.crm.ui.policy.PolicyActivity
 import com.quynhlamryan.crm.utils.AccountManager
@@ -195,9 +197,14 @@ class OtpActivity : AppCompatActivity() {
                             val token = it ?: return@observe
                             AccountManager.token = token
                             lazyMgr.reset()
-                            otpViewModel.getAccount()?.observe(this, Observer { it ->
-                                val account = it ?: return@Observer
-                                AccountManager.account = account
+                            otpViewModel.getAccount()?.observe(this, Observer { _account ->
+                                val account = _account ?: return@Observer
+                                AccountManager.fcmToken?.let {fcmToken ->
+                                    val request = FcmTokenRequest(token = fcmToken,
+                                        osName = Constants.osName,
+                                        crmId = account.userName)
+                                    ProfileRepository.postFcmToken(request)
+                                }
                                 if (!account.isNew) {
                                     openMainActivity()
                                 } else {

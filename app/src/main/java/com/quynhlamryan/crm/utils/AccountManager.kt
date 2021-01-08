@@ -33,6 +33,23 @@ object AccountManager {
             field = value
         }
 
+    var fcmToken: String? = null
+        get() {
+            if (field.isNullOrEmpty()) {
+                return sharedPref?.getString(Constants.fcmTokenKey, null)
+            }
+
+            return field
+        }
+        set(value) {
+            if (value.isNullOrEmpty()) {
+                sharedPref?.edit()?.remove(Constants.fcmTokenKey)?.apply()
+            } else {
+                sharedPref?.edit()?.putString(Constants.fcmTokenKey, value)?.apply()
+            }
+            field = value
+        }
+
     fun logout() {
         account = null
         token = null
