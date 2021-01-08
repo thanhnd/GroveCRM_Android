@@ -31,7 +31,7 @@ class StoreAdapter() :
                 .with(containerView.context)
                 .load(store.imageUrl)
                 .centerCrop()
-                .into(ivImage);
+                .into(ivImage)
         }
     }
 

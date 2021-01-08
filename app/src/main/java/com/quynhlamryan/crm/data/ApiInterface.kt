@@ -38,11 +38,12 @@ interface ApiInterface {
     @POST("api/Users/uploadavatar/")
     fun uploadAvatar(@Part file: MultipartBody.Part): Call<ResponseResult<Boolean>>
 
+    // Todo
     @POST("api/CRMCFMTokens/addfcmtoken/")
     fun addFcmToken(): Call<ResponseResult<Account>>
 
     @GET("api/Users/getlistmymessage/")
-    fun getInbox(): Call<ResponseResult<Account>>
+    fun getInbox(): Call<ResponseResult<Notify>>
 
     @GET("api/CRMPointPOS/viewlisttransactionhistory/")
     fun getListTransactions(): Call<ResponseResult<TransactionHistory>>

@@ -47,5 +47,7 @@
     <string name="dialog_alert_error_title">Lỗi</string>
     <string name="dialog_alert_error_message">Có lỗi xảy ra. Vui lòng thử lại sau.</string>
     <string name="please_wait">Đang tải...</string>
+    <string name="notify">Thông báo</string>
+    <string name="no_notify">Bạn không có thông báo nào.</string>
 
 </resources>

@@ -49,4 +49,6 @@
     <string name="dialog_alert_error_title">Error</string>
     <string name="dialog_alert_error_message">An error occurs. Please try again later.</string>
     <string name="please_wait">Please wait...</string>
+    <string name="notify">Announcement</string>
+    <string name="no_notify">You don\'t have any announcement.</string>
 </resources>

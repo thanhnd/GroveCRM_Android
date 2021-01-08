@@ -55,6 +55,7 @@
         <activity android:name=".ui.profile.ProfileActivity"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ui.policy.PolicyActivity" />
+        <activity android:name=".ui.notify.NotifyActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

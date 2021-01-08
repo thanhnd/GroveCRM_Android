@@ -16,6 +16,7 @@ import com.quynhlamryan.crm.ui.browser.BrowserActivity
 import com.quynhlamryan.crm.ui.inputPhone.InputPhoneActivity
 import com.quynhlamryan.crm.ui.mapstore.MapStoreActivity
 import com.quynhlamryan.crm.ui.membercard.MemberCardActivity
+import com.quynhlamryan.crm.ui.notify.NotifyActivity
 import com.quynhlamryan.crm.ui.setting.SettingActivity
 import com.quynhlamryan.crm.ui.transaction.TransactionActivity
 import com.quynhlamryan.crm.utils.AccountManager
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             })
 
         sectionAdapter.addSection(articleSection)
-        rvMain.adapter = sectionAdapter
+
 
         ivAvatar.setOnClickListener {
             AccountManager.account?.let {
@@ -91,6 +92,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+        rvMain.adapter = sectionAdapter
     }
 
     private fun openSetting() {
@@ -162,6 +164,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
 
             R.id.menu_location -> openMapStore()
+            R.id.menu_notify -> openInbox()
 
             else -> {
             }
@@ -171,6 +174,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun openMapStore() {
         Intent(this, MapStoreActivity::class.java)
+            .apply {
+                startActivity(this)
+            }
+    }
+
+    private fun openInbox() {
+        Intent(this, NotifyActivity::class.java)
             .apply {
                 startActivity(this)
             }

@@ -3,7 +3,12 @@
     xmlns:ct="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="AppCompatResource">
-
+    <item
+        android:id="@+id/menu_notify"
+        android:icon="@drawable/ic_menu_notify"
+        android:showAsAction="ifRoom"
+        android:title=""
+        ct:showAsAction="ifRoom" />
     <item
         android:id="@+id/menu_location"
         android:icon="@drawable/ic_menu_location"
