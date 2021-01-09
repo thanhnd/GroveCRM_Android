@@ -27,7 +27,7 @@ class MemberCardActivity : AppCompatActivity() {
 
         val lp = window.attributes
         screenBrightness = lp.screenBrightness
-        lp.screenBrightness = 255F
+        lp.screenBrightness = 1F
         window.attributes = lp
     }
 
