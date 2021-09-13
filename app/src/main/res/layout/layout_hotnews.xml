@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivHotNewsImage"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvHotNewCaption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:textAllCaps="true"
+            android:textColor="@color/teal_800"
+            android:textSize="20sp"
+            tools:text="Vong quay may man. Nhan qua lien tay">
+
+        </TextView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/content_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvHotNewDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:visibility="gone"
+                    tools:text="Vong quay may man. Nhan qua lien tay. Vong quay may man. Nhan qua lien tay. Vong quay may man. Nhan qua lien tay. Vong quay may man. Nhan qua lien tay. Vong quay may man. Nhan qua lien tay. Vong quay may man. Nhan qua lien tay. Vong quay may man. Nhan qua lien tay. Vong quay may man. Nhan qua lien tay. Vong quay may man. Nhan qua lien tay. Vong quay may man. Nhan qua lien tay. Vong quay may man. Nhan qua lien tay. Vong quay may man. Nhan qua lien tay. Vong quay may man. Nhan qua lien tay. ">
+
+                </TextView>
+            </LinearLayout>
+
+
+        </ScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="#55000000">
+
+        </View>
+
+        <Button
+            android:id="@+id/btnViewHotNewsDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/view_hotnews_details"
+            android:textAllCaps="false"
+            android:textColor="@color/teal_800">
+
+        </Button>
+
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ibClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="@dimen/content_padding"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

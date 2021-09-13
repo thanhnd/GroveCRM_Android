@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/ic_barcode"
+                android:drawableTop="@drawable/ic_qr_code"
                 android:text="@string/member_card"
                 android:textAllCaps="false"
                 android:textColor="@color/black"

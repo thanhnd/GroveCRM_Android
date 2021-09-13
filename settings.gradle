@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Quynh Lam Ryan"
+rootProject.name = "Grove CRM"

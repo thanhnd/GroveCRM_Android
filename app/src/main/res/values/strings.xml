@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Quynh Lam Ryan</string>
+    <string name="app_name">GROVE FRESH</string>
     <string name="title_activity_input_phone">Input Phone Number</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_phone">Phone Number</string>
@@ -38,7 +38,7 @@
     <string name="error_empty_name">Please input your name.</string>
     <string name="error_empty_email">Please input your email.</string>
     <string name="error_empty_birthday">Please enter your birthday.</string>
-    <string name="error_name_too_long">"Name should not exceed 100 chacraters. "</string>
+    <string name="error_name_too_long">"Name should not exceed 100 chacraters."</string>
     <string name="error_email_too_long">Email should not be ecceed 100 characters.</string>
     <string name="error_email_invalid">Invalid email.</string>
     <string name="promotion">Promotion</string>
@@ -51,4 +51,9 @@
     <string name="please_wait">Please wait...</string>
     <string name="notify">Announcement</string>
     <string name="no_notify">You don\'t have any announcement.</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="vietnamese">Vietnamese</string>
+    <string name="choose_language">Choose language</string>
+    <string name="view_hotnews_details">View Details</string>
 </resources>

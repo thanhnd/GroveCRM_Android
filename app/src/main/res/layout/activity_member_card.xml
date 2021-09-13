@@ -32,16 +32,23 @@
             <ImageView
                 android:id="@+id/ivCode"
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
+                android:layout_height="240dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/content_margin"
-                android:gravity="center" />
+                android:gravity="center"
+                android:contentDescription="@string/member_card" />
 
-            <View
+            <TextView
+                tools:text="1234567890123456789"
+                android:id="@+id/tvCode"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
-                android:background="@color/green" />
+                android:textColor="@color/white"
+                android:background="@color/blue" />
 
 
         </LinearLayout>

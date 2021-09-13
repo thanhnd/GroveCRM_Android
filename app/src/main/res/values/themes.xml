@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.QuynhLamRyan" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.GroveCrm" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/teal_900</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -14,12 +14,12 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.QuynhLamRyan.NoActionBar">
+    <style name="Theme.GroveCrm.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.QuynhLamRyan.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.GroveCrm.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.QuynhLamRyan.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.GroveCrm.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

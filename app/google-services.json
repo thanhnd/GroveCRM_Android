@@ -1,49 +1,48 @@
 {
   "project_info": {
-    "project_number": "280461770800",
-    "firebase_url": "https://quynhlamryan-a5ca1.firebaseio.com",
-    "project_id": "quynhlamryan-a5ca1",
-    "storage_bucket": "quynhlamryan-a5ca1.appspot.com"
+    "project_number": "641957835348",
+    "project_id": "grove-crm",
+    "storage_bucket": "grove-crm.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:280461770800:android:3337be687e23a206c3adf5",
+        "mobilesdk_app_id": "1:641957835348:android:e4b30a4d87d27c863673c1",
         "android_client_info": {
-          "package_name": "com.quynhlamryan.crm"
+          "package_name": "com.grove.crm"
         }
       },
       "oauth_client": [
         {
-          "client_id": "280461770800-fsj6lrverc2gooijgi3g25b920muhdqb.apps.googleusercontent.com",
+          "client_id": "641957835348-1v1pjqqgke54pdiktdedar6pul9ekm8r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.quynhlamryan.crm",
+            "package_name": "com.grove.crm",
             "certificate_hash": "a12943fd198e77a7c82e2eb79f0b3bc173b805aa"
           }
         },
         {
-          "client_id": "280461770800-qu0bs8v6f16ufnphq40hofhr7it4eatg.apps.googleusercontent.com",
+          "client_id": "641957835348-5isphhisa84o3i2jf95mlj243ivl0n2q.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDuWmu6vMp95YM9paCaWs1T9mXPjjC1OKY"
+          "current_key": "AIzaSyC66o0lLJrRh9pMB2DfmvfBiOL_kMmi6Rg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "280461770800-qu0bs8v6f16ufnphq40hofhr7it4eatg.apps.googleusercontent.com",
+              "client_id": "641957835348-5isphhisa84o3i2jf95mlj243ivl0n2q.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "280461770800-hj2jemtvupk08i7h1etlgv6dmkl6ql97.apps.googleusercontent.com",
+              "client_id": "641957835348-ghhtim3m36befhrsgvo6n3e95hp9s47h.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.ryan.quynhlam.crm.CRM"
+                "bundle_id": "com.grove.crm"
               }
             }
           ]

@@ -2,7 +2,8 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">45.119.212.100</domain>
-        <domain includeSubdomains="true">crm.pmquynhlam.vn</domain>
+        <domain includeSubdomains="true">45.119.213.80</domain>
+        <domain includeSubdomains="true">member.grovegroup.net</domain>
     </domain-config>
     <base-config cleartextTrafficPermitted="false"/>
 </network-security-config>
