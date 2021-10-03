@@ -23,6 +23,10 @@ interface ApiInterface {
     @GET("api/CRMNews/getlistnew/")
     fun getListArticles(): Call<ResponseResult<List<Article>>>
 
+    @GET("api/Products/getallbypublish/")
+    fun getListProducts(): Call<ResponseResult<List<Product>>>
+
+
     @GET("api/CRMNews/gethotnew/")
     fun getHotNews(): Call<ResponseResult<HotNews>>
 
