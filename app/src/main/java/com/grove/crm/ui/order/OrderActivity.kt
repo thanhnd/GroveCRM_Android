@@ -12,6 +12,7 @@ import com.grove.crm.data.model.EInvoiceInformation
 import com.grove.crm.data.model.Order
 import com.grove.crm.utils.CustomProgressDialog
 import com.grove.crm.utils.ShoppingCartManager
+import com.grove.crm.utils.formatCurrency
 import com.grove.crm.utils.showAlertDialog
 import kotlinx.android.synthetic.main.activity_order.*
 
@@ -22,6 +23,10 @@ class OrderActivity : AppCompatActivity() {
         btnFinishOrder.setOnClickListener {
             submitOrder()
         }
+        title = getString(R.string.title_delivery)
+        tvTotalPrice.text = getString(R.string.total_price,
+            ShoppingCartManager.totalPrice.formatCurrency())
+
     }
 
     private fun submitOrder() {

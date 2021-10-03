@@ -70,5 +70,8 @@
     <string name="finish">Hoàn Tất</string>
     <string name="finish_order_announcement">Hệ thông đã tiếp nhận đơn hàng. Của hàng sẽ liên hệ với bạn sớm để giao hàng.</string>
     <string name="dialog_alert_finish_order">Xác nhận đơn hàng</string>
+    <string name="title_product">Sản phẩm</string>
+    <string name="title_delivery">Thông tin vận chuyển</string>
+    <string name="title_shopping_cart">Giỏ Hàng</string>
 
 </resources>

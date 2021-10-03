@@ -72,4 +72,7 @@
     <string name="finish">Finish</string>
     <string name="finish_order_announcement">System has already received the order. Our sales will contact you soon to delivery.</string>
     <string name="dialog_alert_finish_order">Confirm order</string>
+    <string name="title_product">Products</string>
+    <string name="title_delivery">Delivery Information</string>
+    <string name="title_shopping_cart">Shopping Cart</string>
 </resources>

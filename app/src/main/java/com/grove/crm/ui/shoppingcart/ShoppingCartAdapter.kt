@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.grove.crm.R
 import com.grove.crm.data.model.Product
+import com.grove.crm.utils.format
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_shopping_cart.*
 
@@ -31,7 +32,7 @@ class ShoppingCartAdapter() :
         fun bind(product: Product, qty: Int) {
             tvItemName.text = product.itemName
 
-            tvQtyAndPrice.text = "${qty} x ${product.priceTax}"
+            tvQtyAndPrice.text = "$qty x ${product.priceTax?.format()}"
 
             Glide
                 .with(containerView.context)

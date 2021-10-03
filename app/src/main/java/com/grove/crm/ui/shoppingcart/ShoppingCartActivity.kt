@@ -10,6 +10,7 @@ import com.grove.crm.ui.order.OrderActivity
 import com.grove.crm.ui.product.ProductDetailActivity
 import com.grove.crm.utils.BadgeDrawable
 import com.grove.crm.utils.ShoppingCartManager
+import com.grove.crm.utils.formatCurrency
 import kotlinx.android.synthetic.main.activity_shopping_cart.*
 
 class ShoppingCartActivity : AppCompatActivity() {
@@ -35,6 +36,7 @@ class ShoppingCartActivity : AppCompatActivity() {
             Intent(this, OrderActivity::class.java)
                 .apply { startActivity(this) }
         }
+        title = getString(R.string.title_shopping_cart)
     }
 
     override fun onResume() {
@@ -50,7 +52,7 @@ class ShoppingCartActivity : AppCompatActivity() {
             }
         }
 
-        tvTotalPrice.text = "${ShoppingCartManager.totalPrice}"
+        tvTotalPrice.text = getString(R.string.total_price, ShoppingCartManager.totalPrice.formatCurrency())
     }
 
     private fun setBadgeCount(icon: LayerDrawable, count: String) {

@@ -38,6 +38,7 @@ class ProductListActivity : AppCompatActivity() {
                 }
         }
         rvProduct.adapter = adapter
+        title = getString(R.string.title_product)
     }
 
     override fun onStart() {

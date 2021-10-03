@@ -1,5 +1,6 @@
 package com.grove.crm.ui.product
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.grove.crm.R
 import com.grove.crm.data.model.Product
+import com.grove.crm.utils.formatCurrency
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_product.*
 
@@ -25,7 +27,14 @@ class ProductListAdapter() :
         @Suppress("DEPRECATION")
         fun bind(product: Product) {
             tvItemName.text = product.itemName
-            tvPrice.text = "${product.priceTax}"
+            tvPrice.text = product.priceTax?.formatCurrency()
+            product.priceTaxNotDiscount?.let {
+                tvOldPrice.text = it.formatCurrency()
+                tvOldPrice.paintFlags = tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                tvOldPrice.visibility = View.VISIBLE
+            } ?: run {
+                tvOldPrice.visibility = View.GONE
+            }
 
             Glide
                 .with(containerView.context)
