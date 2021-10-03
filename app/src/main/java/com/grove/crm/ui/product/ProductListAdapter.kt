@@ -10,8 +10,8 @@ import com.grove.crm.data.model.Product
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_product.*
 
-class ProductAdapter() :
-    RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductListAdapter() :
+    RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
 
     internal var products: List<Product>? = null
         set(value) {
@@ -25,7 +25,7 @@ class ProductAdapter() :
         @Suppress("DEPRECATION")
         fun bind(product: Product) {
             tvItemName.text = product.itemName
-            tvPrice.text = product.priceTax
+            tvPrice.text = "${product.priceTax}"
 
             Glide
                 .with(containerView.context)

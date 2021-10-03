@@ -20,7 +20,7 @@ import com.grove.crm.ui.inputPhone.InputPhoneActivity
 import com.grove.crm.ui.mapstore.MapStoreActivity
 import com.grove.crm.ui.membercard.MemberCardActivity
 import com.grove.crm.ui.notify.NotifyActivity
-import com.grove.crm.ui.product.ProductActivity
+import com.grove.crm.ui.product.ProductListActivity
 import com.grove.crm.ui.setting.SettingActivity
 import com.grove.crm.ui.transaction.TransactionActivity
 import com.grove.crm.utils.AccountManager
@@ -281,7 +281,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun openListProduct(view: View) {
-        Intent(this, ProductActivity::class.java)
+        Intent(this, ProductListActivity::class.java)
             .apply { startActivity(this) }
     }
 }

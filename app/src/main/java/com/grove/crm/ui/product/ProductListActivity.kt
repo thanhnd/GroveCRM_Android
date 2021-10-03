@@ -1,5 +1,6 @@
 package com.grove.crm.ui.product
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -9,17 +10,23 @@ import com.grove.crm.data.model.Product
 import com.grove.crm.utils.CustomProgressDialog
 import kotlinx.android.synthetic.main.activity_product.*
 
-class ProductActivity : AppCompatActivity() {
+class ProductListActivity : AppCompatActivity() {
 
-    lateinit var productViewModel: ProductActivityViewModel
-    private val adapter = ProductAdapter()
+    lateinit var productListViewModel: ProductListActivityViewModel
+    private val adapter = ProductListAdapter()
     private var stores: List<Product> = listOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
-        productViewModel = ViewModelProvider(this).get(ProductActivityViewModel::class.java)
-
+        productListViewModel = ViewModelProvider(this).get(ProductListActivityViewModel::class.java)
+        adapter.onItemClick = { product ->
+            Intent(this, ProductDetailActivity::class.java)
+                .apply {
+                    putExtra(ProductDetailActivity.PRODUCT, product)
+                    startActivity(this)
+                }
+        }
         rvProduct.adapter = adapter
     }
 
@@ -27,7 +34,7 @@ class ProductActivity : AppCompatActivity() {
         super.onStart()
 
         CustomProgressDialog.showProgressDialog(this)
-        productViewModel.getProducts()?.observe(this, Observer { stores ->
+        productListViewModel.getProducts()?.observe(this, Observer { stores ->
             CustomProgressDialog.dismissProgressDialog()
             adapter.products = stores
 

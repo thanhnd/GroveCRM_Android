@@ -29,7 +29,10 @@
         android:theme="@style/Theme.GroveCrm"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.product.ProductActivity"
+            android:name=".ui.product.ProductDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.product.ProductListActivity"
             android:exported="true" />
         <activity android:name=".ui.membercard.MemberCardActivity" />
 

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.grove.crm.data.ProductActivityRepository
 import com.grove.crm.data.model.Product
 
-class ProductActivityViewModel : ViewModel() {
+class ProductListActivityViewModel : ViewModel() {
 
     private var ldProducts: MutableLiveData<List<Product>>? = null
 
