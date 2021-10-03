@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray">
+    android:background="@color/light_gray"
+    tools:context=".ui.profile.ProfileActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context=".ui.profile.ProfileActivity">
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="100dp"
@@ -92,11 +92,11 @@
                     android:id="@+id/edtBirthday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_birthday"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
+                    android:hint="@string/prompt_birthday"
                     android:lines="1"
                     android:maxLength="100"
                     android:maxLines="1"

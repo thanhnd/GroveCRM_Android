@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    tools:context=".ui.order.OrderActivity">
+    <ScrollView
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/vBottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/content_padding">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/content_padding"
+                        android:text="Họ tên người nhận " />
+
+                    <EditText
+                        android:id="@+id/edtFullName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_full_name"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:padding="@dimen/content_padding" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/content_vertical_padding"
+                        android:padding="@dimen/content_padding"
+                        android:text="@string/delivery_address" />
+
+                    <EditText
+                        android:id="@+id/edtDeliveryAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_address"
+                        android:inputType="textPostalAddress"
+                        android:lines="1"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:padding="@dimen/content_padding" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/content_vertical_padding"
+                        android:padding="@dimen/content_padding"
+                        android:text="@string/phone_number" />
+
+                    <EditText
+                        android:id="@+id/edtPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="@string/prompt_phone"
+                        android:inputType="phone"
+                        android:lines="1"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="@dimen/content_padding" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/content_vertical_padding"
+                        android:padding="@dimen/content_padding"
+                        android:text="@string/note" />
+
+                    <EditText
+                        android:id="@+id/edtNote"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="@string/prompt_note"
+                        android:padding="@dimen/content_padding" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:padding="@dimen/content_padding"
+                android:text="@string/e_invoice" />
+
+            <com.google.android.material.card.MaterialCardView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/content_padding">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/content_padding"
+                        android:text="@string/company_name" />
+
+                    <EditText
+                        android:id="@+id/edtCompanyName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_company_name"
+                        android:inputType="textAutoComplete"
+                        android:lines="1"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:padding="@dimen/content_padding" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/content_padding"
+                        android:text="@string/address" />
+
+                    <EditText
+                        android:id="@+id/edtCompanyAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_address"
+                        android:inputType="textPostalAddress"
+                        android:lines="1"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:padding="@dimen/content_padding" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/content_padding"
+                        android:text="@string/company_tax_code" />
+
+                    <EditText
+                        android:id="@+id/edtTaxCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_company_tax_code"
+                        android:inputType="textAutoComplete"
+                        android:lines="1"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:padding="@dimen/content_padding" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:clipToOutline="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/vBottom"
+        android:background="@color/blue">
+        <TextView
+            android:id="@+id/tvTotalPrice"
+            android:layout_width="0dp"
+            android:padding="@dimen/content_horizontal_padding"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="@string/total_price"/>
+        <Button
+            android:id="@+id/btnFinishOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textAllCaps="false"
+            android:text="@string/finish"/>
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package com.grove.crm.utils
 
 import com.grove.crm.data.model.Product
+import com.grove.crm.data.model.ProductItem
 
 object ShoppingCartManager {
 
@@ -30,8 +31,13 @@ object ShoppingCartManager {
         return value
     }
 
+    var listItem: List<ProductItem> = listOf()
+        get() {
+            return items.map { ProductItem(it.key, it.value) }
+        }
+
+
     fun clear() {
         items = HashMap()
     }
-
 }

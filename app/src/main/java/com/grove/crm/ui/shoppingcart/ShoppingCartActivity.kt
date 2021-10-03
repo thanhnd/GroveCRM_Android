@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import com.grove.crm.R
+import com.grove.crm.ui.order.OrderActivity
 import com.grove.crm.ui.product.ProductDetailActivity
 import com.grove.crm.utils.BadgeDrawable
 import com.grove.crm.utils.ShoppingCartManager
@@ -29,6 +30,11 @@ class ShoppingCartActivity : AppCompatActivity() {
                 }
         }
         rvItem.adapter = adapter
+
+        btnOrder.setOnClickListener {
+            Intent(this, OrderActivity::class.java)
+                .apply { startActivity(this) }
+        }
     }
 
     override fun onResume() {

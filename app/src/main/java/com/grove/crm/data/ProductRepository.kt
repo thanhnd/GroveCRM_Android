@@ -1,6 +1,8 @@
 package com.grove.crm.data
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.grove.crm.data.model.Order
 import com.grove.crm.data.model.Product
 import com.grove.crm.data.model.ResponseResult
 import com.grove.crm.utils.Logger
@@ -8,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-object ProductActivityRepository {
+object ProductRepository {
 
     val ldProducts = MutableLiveData<List<Product>>()
 
@@ -31,5 +33,26 @@ object ProductActivityRepository {
             }
         })
         return ldProducts
+    }
+
+    fun submitOrder(order: Order): MutableLiveData<Boolean> {
+
+        val call = ApiClient.apiInterface.submitOrder(order)
+
+        val ldResult = MutableLiveData<Boolean>()
+        call.enqueue(object : Callback<ResponseResult<Boolean>> {
+            override fun onFailure(call: Call<ResponseResult<Boolean>>, t: Throwable) {
+                Log.v("DEBUG : ", t.message.toString())
+            }
+
+            override fun onResponse(
+                call: Call<ResponseResult<Boolean>>,
+                response: Response<ResponseResult<Boolean>>
+            ) {
+                ldResult.value = response.body()?.isSuccessed
+            }
+        })
+
+        return ldResult
     }
 }

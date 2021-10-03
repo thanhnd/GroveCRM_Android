@@ -58,4 +58,18 @@
     <string name="view_hotnews_details">View Details</string>
     <string name="shop">Shopping</string>
     <string name="shopping_cart">Shopping Cart</string>
+    <string name="delivery_address">Delivery address</string>
+    <string name="prompt_address">Input address</string>
+    <string name="e_invoice">E-Invoice Information</string>
+    <string name="company_name">Company\'s name</string>
+    <string name="prompt_company_name">Input company\'s name</string>
+    <string name="address">Address</string>
+    <string name="prompt_company_tax_code">Input company\'s tax code</string>
+    <string name="company_tax_code">Tax Code</string>
+    <string name="note">Note</string>
+    <string name="prompt_note">Enter note for shop</string>
+    <string name="total_price">Total Price: %s</string>
+    <string name="finish">Finish</string>
+    <string name="finish_order_announcement">System has already received the order. Our sales will contact you soon to delivery.</string>
+    <string name="dialog_alert_finish_order">Confirm order</string>
 </resources>

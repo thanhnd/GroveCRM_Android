@@ -39,6 +39,10 @@ class ProductDetailActivity : AppCompatActivity() {
 
         }
 
+        if (product == null) {
+            finish()
+        }
+
         btnIncreaseQty.setOnClickListener {
             if (qty >= MaxQty) {
                 qty = MaxQty

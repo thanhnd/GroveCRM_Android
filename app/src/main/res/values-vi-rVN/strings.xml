@@ -56,5 +56,19 @@
     <string name="view_hotnews_details">Xem Chi Tiết</string>
     <string name="shop">Shopping</string>
     <string name="shopping_cart">Shopping Cart</string>
+    <string name="delivery_address">Địa chỉ nơi nhận</string>
+    <string name="prompt_address">Nhập địa chỉ</string>
+    <string name="e_invoice">Thông tin xuất hóa đơn điện tử</string>
+    <string name="company_name">Tên công ty</string>
+    <string name="prompt_company_name">Nhập tên công ty</string>
+    <string name="address">Địa chỉ</string>
+    <string name="prompt_company_tax_code">Nhập mã số thuế</string>
+    <string name="company_tax_code">Mã số thuế</string>
+    <string name="note">Ghi chú</string>
+    <string name="prompt_note">Nhập ghi chú cho cửa hàng</string>
+    <string name="total_price">Tổng cộng: %s</string>
+    <string name="finish">Hoàn Tất</string>
+    <string name="finish_order_announcement">Hệ thông đã tiếp nhận đơn hàng. Của hàng sẽ liên hệ với bạn sớm để giao hàng.</string>
+    <string name="dialog_alert_finish_order">Xác nhận đơn hàng</string>
 
 </resources>
