@@ -5,142 +5,242 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.product.ProductDetailActivity">
+
     <ImageView
         android:id="@+id/ivImage"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_width="120dp"
-        android:layout_height="120dp" />
+        android:layout_height="120dp"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        app:layout_constraintLeft_toRightOf="@id/ivImage"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/tvItemName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="left"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        app:layout_constraintWidth_default="spread"
-        android:layout_gravity="left"
         android:ellipsize="end"
         android:gravity="left"
         android:lines="2"
         android:textAllCaps="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/teal_800"
-        tools:text="Product Name" />
-    <TextView
         app:layout_constraintLeft_toRightOf="@id/ivImage"
-        app:layout_constraintTop_toBottomOf="@+id/tvItemName"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="spread"
+        tools:text="Product Name" />
+
+    <TextView
         android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:layout_gravity="center_horizontal"
         android:lines="1"
         android:textAllCaps="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/teal_800"
+        app:layout_constraintLeft_toRightOf="@id/ivImage"
+        app:layout_constraintTop_toBottomOf="@+id/tvItemName"
         tools:text="Price" />
+
     <TextView
-        app:layout_constraintLeft_toRightOf="@id/tvPrice"
-        app:layout_constraintTop_toTopOf="@id/tvPrice"
-        app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/tvOldPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:layout_gravity="center_horizontal"
         android:lines="1"
         android:textAllCaps="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/teal_800"
+        app:layout_constraintLeft_toRightOf="@id/tvPrice"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvPrice"
         tools:text="Old Price" />
 
     <TableLayout
-        app:layout_constraintTop_toBottomOf="@id/ivImage"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:id="@+id/tlSpecs"
-        android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivImage">
+
         <TableRow>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SKU" />
+
             <TextView
                 android:id="@+id/tvSKU"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:text="SKU" />
         </TableRow>
+
         <TableRow>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thương hiệu" />
+
             <TextView
                 android:id="@+id/tvBranch"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:text="" />
         </TableRow>
+
         <TableRow>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Xuất xứ" />
+
             <TextView
                 android:id="@+id/tvOriginal"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 tools:text="SKU" />
 
         </TableRow>
+
         <TableRow>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Đơn vị tính" />
+
             <TextView
                 android:id="@+id/tvUnit"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 tools:text="SKU" />
         </TableRow>
+
         <TableRow>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Catalog" />
+
             <TextView
                 android:id="@+id/tvCatalog"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 tools:text="SKU" />
         </TableRow>
     </TableLayout>
+
     <TextView
         android:id="@+id/tvDescription"
-        app:layout_constraintTop_toBottomOf="@id/tlSpecs"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus tortor laoreet convallis tristique. Praesent condimentum quam eget quam consectetur, at placerat massa egestas. Donec ultrices urna non congue accumsan. Maecenas commodo neque eu libero bibendum, luctus elementum massa iaculis. Aliquam fringilla risus ultricies odio feugiat porta tempor ut tellus. Nam id rhoncus libero. Quisque fringilla maximus nibh eu maximus. Nulla feugiat elementum vehicula. Nulla tempus ex eget tortor porttitor eleifend. Duis convallis pharetra dui eu malesuada. Nulla consectetur arcu dui. Quisque sit amet dui accumsan felis fringilla placerat et ac dolor. Duis nec arcu mat"
-        />
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tlSpecs"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus tortor laoreet convallis tristique. Praesent condimentum quam eget quam consectetur, at placerat massa egestas. Donec ultrices urna non congue accumsan. Maecenas commodo neque eu libero bibendum, luctus elementum massa iaculis. Aliquam fringilla risus ultricies odio feugiat porta tempor ut tellus. Nam id rhoncus libero. Quisque fringilla maximus nibh eu maximus. Nulla feugiat elementum vehicula. Nulla tempus ex eget tortor porttitor eleifend. Duis convallis pharetra dui eu malesuada. Nulla consectetur arcu dui. Quisque sit amet dui accumsan felis fringilla placerat et ac dolor. Duis nec arcu mat" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/content_horizontal_padding"
+        android:paddingRight="@dimen/content_horizontal_padding"
+        android:paddingBottom="@dimen/content_horizontal_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray" />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Số lượng" />
+
+            <Button
+                android:id="@+id/btnDecreaseQty"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:text="-"
+                />
+
+            <TextView
+                android:id="@+id/tvQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/content_horizontal_padding"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/btnIncreaseQty"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:text="+"></Button>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray" />
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:clipToOutline="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/blue">
+            <TextView
+                android:id="@+id/tvTotalPrice"
+                android:layout_width="0dp"
+                android:padding="@dimen/content_horizontal_padding"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:text="Total Price "/>
+            <Button
+                android:id="@+id/btnAddToCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:textAllCaps="false"
+                android:text="Thêm vào giỏ hàng"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
