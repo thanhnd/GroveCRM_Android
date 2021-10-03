@@ -55,5 +55,6 @@
     <string name="choose_language">Chọn Ngôn Ngữ</string>
     <string name="view_hotnews_details">Xem Chi Tiết</string>
     <string name="shop">Shopping</string>
+    <string name="shopping_cart">Shopping Cart</string>
 
 </resources>

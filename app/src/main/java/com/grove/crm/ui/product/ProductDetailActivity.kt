@@ -64,6 +64,7 @@ class ProductDetailActivity : AppCompatActivity() {
             if (product == null) return@setOnClickListener
 
             ShoppingCartManager.items[product!!] = qty
+            finish()
         }
     }
 
