@@ -6,18 +6,19 @@ object ShoppingCartManager {
 
     var items: HashMap<Product, Int> = HashMap()
 
-    fun getTotalPrice() : Long {
-        var value = 0L
-        items.forEach { entry ->
-            val product = entry.key
-            val qty = entry.value
-            product.priceTax?.let { price ->
-                value += price * qty
-            }
+    var totalPrice = 0L
+        get() {
+            var value = 0L
+            items.forEach { entry ->
+                val product = entry.key
+                val qty = entry.value
+                product.priceTax?.let { price ->
+                    value += price * qty
+                }
 
+            }
+            return value
         }
-        return value
-    }
 
     fun countItem(): Int {
         var value = 0

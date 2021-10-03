@@ -73,6 +73,7 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ui.policy.PolicyActivity" />
         <activity android:name=".ui.notify.NotifyActivity" />
+        <activity android:name=".ui.shoppingcart.ShoppingCartActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
