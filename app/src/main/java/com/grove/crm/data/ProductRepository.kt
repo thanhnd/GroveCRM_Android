@@ -43,6 +43,7 @@ object ProductRepository {
         call.enqueue(object : Callback<ResponseResult<Boolean>> {
             override fun onFailure(call: Call<ResponseResult<Boolean>>, t: Throwable) {
                 Log.v("DEBUG : ", t.message.toString())
+                ldResult.value = false
             }
 
             override fun onResponse(

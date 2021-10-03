@@ -142,8 +142,6 @@ class MainActivity : BaseActivity() {
             }
             show()
         }
-
-
     }
 
     private fun openSetting() {

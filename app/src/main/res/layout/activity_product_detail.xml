@@ -203,7 +203,9 @@
                 android:id="@+id/btnIncreaseQty"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
-                android:text="+"></Button>
+                android:text="+"
+                android:textColorHighlight="@color/white"
+                android:textColorLink="@color/white"></Button>
         </LinearLayout>
 
         <View
@@ -231,7 +233,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:textAllCaps="false"
-                android:text="Thêm vào giỏ hàng"/>
+                android:text="@string/add_to_cart"/>
 
         </LinearLayout>
 

@@ -21,8 +21,6 @@ class ShoppingCartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.grove.crm.R.layout.activity_shopping_cart)
-
-        adapter.products = ShoppingCartManager.items
         adapter.onItemClick = { product ->
             Intent(this, ProductDetailActivity::class.java)
                 .apply {
@@ -53,6 +51,8 @@ class ShoppingCartActivity : AppCompatActivity() {
         }
 
         tvTotalPrice.text = getString(R.string.total_price, ShoppingCartManager.totalPrice.formatCurrency())
+        adapter.products = ShoppingCartManager.items
+        adapter.notifyDataSetChanged()
     }
 
     private fun setBadgeCount(icon: LayerDrawable, count: String) {

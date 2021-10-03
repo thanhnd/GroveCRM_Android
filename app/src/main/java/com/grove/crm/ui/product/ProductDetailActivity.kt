@@ -25,6 +25,7 @@ class ProductDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
+        title = getString(R.string.title_product)
 
         intent.getParcelableExtra<Product>(PRODUCT)?.apply {
             product = this
@@ -50,6 +51,10 @@ class ProductDetailActivity : AppCompatActivity() {
             tvUnit.text = weightName
             tvCatalog.text = catalogName
             tvDescription.text = description
+
+            ShoppingCartManager.items.get(product)?.let {
+                qty = it
+            }
         }
 
         if (product == null) {
@@ -76,8 +81,12 @@ class ProductDetailActivity : AppCompatActivity() {
 
         btnAddToCart.setOnClickListener {
             if (product == null) return@setOnClickListener
+            if (qty > 0) {
+                ShoppingCartManager.items[product!!] = qty
+            } else {
+                ShoppingCartManager.items.remove(product!!)
+            }
 
-            ShoppingCartManager.items[product!!] = qty
             finish()
         }
     }
@@ -86,6 +95,13 @@ class ProductDetailActivity : AppCompatActivity() {
         tvQty.text = "$qty"
         product?.priceTax?.let { price ->
             tvTotalPrice.text = (qty * price).formatCurrency()
+        }
+        if (qty == 0) {
+            ShoppingCartManager.items.get(product)?.let {
+                btnAddToCart.setText(R.string.remove_from_cart)
+            }
+        } else {
+            btnAddToCart.setText(R.string.add_to_cart)
         }
     }
 
