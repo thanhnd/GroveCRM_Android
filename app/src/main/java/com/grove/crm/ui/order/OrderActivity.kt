@@ -107,8 +107,7 @@ class OrderActivity : AppCompatActivity() {
         CustomProgressDialog.showProgressDialog(this)
         ProductRepository.submitOrder(order).observe(this, Observer { result ->
             CustomProgressDialog.dismissProgressDialog()
-            if (result) {
-
+            if (result != null && result) {
                 showAlertDialog(
                     title = getString(R.string.dialog_alert_finish_order),
                     message = getString(R.string.finish_order_announcement).toSpannable()

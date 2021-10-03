@@ -50,7 +50,7 @@ object ProductRepository {
                 call: Call<ResponseResult<Boolean>>,
                 response: Response<ResponseResult<Boolean>>
             ) {
-                ldResult.value = response.body()?.isSuccessed
+                ldResult.value = response.body()?.isSuccessed ?: false
             }
         })
 

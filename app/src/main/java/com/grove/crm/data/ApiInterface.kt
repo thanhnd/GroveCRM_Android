@@ -42,7 +42,7 @@ interface ApiInterface {
     @PUT("api/Users/updateuserprofile/")
     fun updateUserProfile(@Body request: AccountRequest): Call<ResponseResult<Boolean>>
 
-    @POST("api/SO/checkout/")
+    @POST("api/SO/checkout")
     fun submitOrder(@Body order: Order): Call<ResponseResult<Boolean>>
 
     @Multipart
