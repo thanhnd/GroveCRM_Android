@@ -1,9 +1,12 @@
 package com.grove.crm.ui.shoppingcart
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.view.Menu
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.grove.crm.R
 import com.grove.crm.ui.order.OrderActivity
@@ -17,6 +20,13 @@ class ShoppingCartActivity : AppCompatActivity() {
 
     private var menu: Menu? = null
     private val adapter = ShoppingCartAdapter()
+    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            result: ActivityResult ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val intent = result.data
+            finish()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +42,7 @@ class ShoppingCartActivity : AppCompatActivity() {
 
         btnOrder.setOnClickListener {
             Intent(this, OrderActivity::class.java)
-                .apply { startActivity(this) }
+                .apply { startForResult.launch(this) }
         }
         title = getString(R.string.title_shopping_cart)
     }

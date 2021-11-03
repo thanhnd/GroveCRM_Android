@@ -38,6 +38,6 @@ object ShoppingCartManager {
 
 
     fun clear() {
-        items = HashMap()
+        items.clear()
     }
 }

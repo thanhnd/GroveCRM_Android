@@ -16,9 +16,6 @@ import com.grove.crm.utils.CustomProgressDialog
 import com.grove.crm.utils.ShoppingCartManager
 import kotlinx.android.synthetic.main.activity_product.*
 
-
-
-
 class ProductListActivity : AppCompatActivity() {
 
     private var menu: Menu? = null
@@ -58,12 +55,7 @@ class ProductListActivity : AppCompatActivity() {
 
         menu?.findItem(R.id.action_cart)?.let {
             val count = ShoppingCartManager.countItem()
-            if (count > 0) {
-
-                setBadgeCount(it.icon as LayerDrawable, "${ShoppingCartManager.countItem()}");
-            } else {
-                removeBadgeCount(it.icon as LayerDrawable)
-            }
+            setBadgeCount(it.icon as LayerDrawable, "$count")
         }
     }
 
@@ -100,27 +92,11 @@ class ProductListActivity : AppCompatActivity() {
         // Reuse drawable if possible
         val reuse = icon.findDrawableByLayerId(R.id.ic_badge)
         badge = if (reuse != null && reuse is BadgeDrawable) {
-            reuse as BadgeDrawable
+            reuse
         } else {
             BadgeDrawable(this)
         }
         badge.setCount(count)
-        icon.mutate()
-        icon.setDrawableByLayerId(R.id.ic_badge, badge)
-    }
-
-    private fun removeBadgeCount(icon: LayerDrawable) {
-        val badge: BadgeDrawable
-
-        // Reuse drawable if possible
-        val reuse = icon.findDrawableByLayerId(R.id.ic_badge)
-
-        badge = if (reuse != null && reuse is BadgeDrawable) {
-            reuse as BadgeDrawable
-        } else {
-            BadgeDrawable(this)
-        }
-        badge.alpha = 0
         icon.mutate()
         icon.setDrawableByLayerId(R.id.ic_badge, badge)
     }

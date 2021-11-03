@@ -75,5 +75,6 @@
     <string name="title_shopping_cart">Giỏ Hàng</string>
     <string name="remove_from_cart">Xóa khỏi giỏ hàng</string>
     <string name="add_to_cart">Thêm vào giỏ hàng</string>
+    <string name="close">Đóng lại</string>
 
 </resources>

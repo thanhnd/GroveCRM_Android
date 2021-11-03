@@ -97,10 +97,13 @@ class ProductDetailActivity : AppCompatActivity() {
             tvTotalPrice.text = (qty * price).formatCurrency()
         }
         if (qty == 0) {
-            ShoppingCartManager.items.get(product)?.let {
+            ShoppingCartManager.items[product]?.let {
                 btnAddToCart.setText(R.string.remove_from_cart)
+            } ?: run {
+                btnAddToCart.isEnabled = false
             }
         } else {
+            btnAddToCart.isEnabled = true
             btnAddToCart.setText(R.string.add_to_cart)
         }
     }

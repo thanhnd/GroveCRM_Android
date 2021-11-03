@@ -1,7 +1,6 @@
 package com.grove.crm.data
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import com.grove.crm.data.model.ResponseResult
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,7 +16,6 @@ object InputPhoneRepository {
     fun getOtp(phoneNumber: String, updateResults: (String) -> Unit) {
 
         val call = ApiClient.apiInterface.getOtp(phoneNumber)
-        val ldOtp = MutableLiveData<String>()
         call.enqueue(object : Callback<ResponseResult<String>> {
             override fun onFailure(call: Call<ResponseResult<String>>, t: Throwable) {
                 Log.v("DEBUG : ", t.message.toString())

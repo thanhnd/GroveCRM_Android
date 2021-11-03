@@ -74,36 +74,41 @@
         <TableRow>
 
             <TextView
+                android:padding="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SKU" />
 
             <TextView
+                android:padding="2dp"
                 android:id="@+id/tvSKU"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:text="SKU" />
+                tools:text="SKU" />
         </TableRow>
 
         <TableRow>
 
             <TextView
+                android:padding="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thương hiệu" />
 
             <TextView
+                android:padding="2dp"
                 android:id="@+id/tvBranch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:text="" />
+                tools:text="SKU" />
         </TableRow>
 
         <TableRow>
 
             <TextView
+                android:padding="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Xuất xứ" />
@@ -120,11 +125,13 @@
         <TableRow>
 
             <TextView
+                android:padding="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Đơn vị tính" />
 
             <TextView
+                android:padding="2dp"
                 android:id="@+id/tvUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -135,11 +142,13 @@
         <TableRow>
 
             <TextView
+                android:padding="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Catalog" />
 
             <TextView
+                android:padding="2dp"
                 android:id="@+id/tvCatalog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -153,6 +162,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
+        android:lineSpacingMultiplier="1.2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tlSpecs"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus tortor laoreet convallis tristique. Praesent condimentum quam eget quam consectetur, at placerat massa egestas. Donec ultrices urna non congue accumsan. Maecenas commodo neque eu libero bibendum, luctus elementum massa iaculis. Aliquam fringilla risus ultricies odio feugiat porta tempor ut tellus. Nam id rhoncus libero. Quisque fringilla maximus nibh eu maximus. Nulla feugiat elementum vehicula. Nulla tempus ex eget tortor porttitor eleifend. Duis convallis pharetra dui eu malesuada. Nulla consectetur arcu dui. Quisque sit amet dui accumsan felis fringilla placerat et ac dolor. Duis nec arcu mat" />
@@ -188,6 +198,7 @@
                 android:id="@+id/btnDecreaseQty"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
+                android:textColor="@color/white"
                 android:text="-"
                 />
 
@@ -204,8 +215,7 @@
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:text="+"
-                android:textColorHighlight="@color/white"
-                android:textColorLink="@color/white"></Button>
+                android:textColor="@color/white"></Button>
         </LinearLayout>
 
         <View

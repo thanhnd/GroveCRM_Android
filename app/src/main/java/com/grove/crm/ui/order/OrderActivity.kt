@@ -110,7 +110,12 @@ class OrderActivity : AppCompatActivity() {
             if (result != null && result) {
                 showAlertDialog(
                     title = getString(R.string.dialog_alert_finish_order),
-                    message = getString(R.string.finish_order_announcement).toSpannable()
+                    message = getString(R.string.finish_order_announcement).toSpannable(),
+                    onClose = {
+                        ShoppingCartManager.clear()
+                        setResult(RESULT_OK)
+                        finish()
+                    }
                 )
             }
         })
